@@ -16,6 +16,19 @@ const mockMessages = [
     },
 ]
 
-const App = () => <LsChat messages={mockMessages} />
+const headerContainerStyle = {
+    backgroundColor: '#FFF',
+}
+
+const options = {
+    headerProps: {
+        containerStyle: headerContainerStyle,
+        title: 'Example Chat!',
+        onCloseButtonPress: () => {},
+    },
+    messages: mockMessages,
+}
+
+const App = () => <LsChat {...options} />
 
 export default App
