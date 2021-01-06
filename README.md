@@ -1,2 +1,3 @@
-# react-native-ls-chat
-React Native Chat Module
+# React Native Ls Chat
+
+React Native Animated Chat

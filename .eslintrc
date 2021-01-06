@@ -1,0 +1,116 @@
+{
+  "root": true,
+  "extends": [
+    "defaults",
+    "airbnb-typescript-prettier",
+    "prettier",
+    "prettier/react"
+  ],
+  "globals": {
+    "__DEV__": true
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "useJSXTextNode": true,
+    "project": "./tsconfig.json",
+    "tsconfigRootDir": "."
+  },
+  "rules": {
+    "radix": 0,
+    "no-prototype-builtins": 0,
+    "no-return-await": 0,
+    "no-empty": 0,
+    "no-param-reassign": 0,
+    "react/no-array-index-key": 0,
+    "react-hooks/exhaustive-deps": 0,
+    "@typescript-eslint/ban-ts-ignore": 0,
+    "@typescript-eslint/interface-name-prefix": 0,
+    "@typescript-eslint/naming-convention": [
+        "error",
+        {
+          "selector": "default", "format": ["camelCase"]
+        },
+        {
+          "selector": "variableLike", "format": ["camelCase"]
+        },
+        {
+          "selector": "variable", "format": ["camelCase", "UPPER_CASE", "PascalCase"]
+        },
+        {
+          "selector": "variable",
+          "types": ["boolean"],
+          "format": ["PascalCase"],
+          "prefix": ["is", "should", "has", "can", "did", "will"]
+        },
+        {
+          "selector": "parameter", "format": ["camelCase"], "leadingUnderscore": "allow"
+        },
+        {
+          "selector": "enumMember", "format": ["UPPER_CASE"]
+        },
+        {
+          "selector": "memberLike", "format": ["camelCase"]
+        },
+        {
+          "selector": "memberLike", "modifiers": ["private"], "format": ["camelCase"], "leadingUnderscore": "require"
+        },
+        {
+          "selector": "typeLike", "format": ["PascalCase"]
+        },
+        {
+          "selector": "typeLike", "format": ["PascalCase"]
+        },
+        {
+          "selector": "interface", "format": ["PascalCase"], "custom": { "regex": "^I[A-Za-z]", "match": true }
+        },
+        { 
+          "selector": "typeParameter", "format": ["PascalCase"], "prefix": ["T"] 
+        }
+    ],
+    "react/static-property-placement": 0,
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [
+          ".js",
+          ".jsx",
+          ".ts",
+          ".tsx"
+        ]
+      }
+    ],
+    "@typescript-eslint/no-empty-function": 0,
+    "import/prefer-default-export": 0,
+    "import/extensions": 0,
+    "import/named": 0,
+    "import/no-named-as-default": 0,
+    "import/no-named-as-default-member": 0,
+    "prettier/prettier": [
+      "error",
+      {
+        "trailingComma": "es5",
+        "singleQuote": true,
+        "printWidth": 100
+      }
+    ]
+  },
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "prettier",
+    "react",
+    "react-hooks",
+    "@typescript-eslint"
+  ],
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".ts", ".jsx", ".tsx"],
+        "paths": ["src"]
+      }
+    }
+  },
+  "ignorePatterns": [
+    "*.config.js"
+  ]
+}
