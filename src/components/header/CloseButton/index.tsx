@@ -2,14 +2,18 @@ import * as React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
 
 import COLORS from '../../../colors'
-import Icon, { ICONS } from '../../icon'
 import { IHeaderProps } from '../../../interfaces'
+
+import Icon, { ICONS } from '../../Icon'
 
 const CloseButton: React.FC<IHeaderProps> = ({ onCloseButtonPress }) => {
     if (onCloseButtonPress === undefined) return null
 
     return (
-        <TouchableWithoutFeedback onPress={onCloseButtonPress}>
+        <TouchableWithoutFeedback
+            onPress={onCloseButtonPress}
+            accessibilityLabel='Close chat button'
+            accessibilityRole='button'>
             <View
                 style={{
                     height: 60,

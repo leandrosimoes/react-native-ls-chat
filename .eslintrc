@@ -6,6 +6,9 @@
     "prettier",
     "prettier/react"
   ],
+  "env": {
+    "jest": true
+  },
   "globals": {
     "__DEV__": true
   },
@@ -101,7 +104,8 @@
     "prettier",
     "react",
     "react-hooks",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "jest"
   ],
   "settings": {
     "import/resolver": {

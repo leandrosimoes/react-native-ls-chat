@@ -11,8 +11,8 @@
     "lib"
   ],
   "scripts": {
-    "compile": "rm -rf lib && tsc -p . && cp -a lib/. example/node_modules/react-native-ls-chat/",
-    "lint": "eslint .",
+    "compile": "rm -rf lib && tsc -p . && cp -Rf lib/. example/node_modules/react-native-ls-chat/",
+    "lint": "eslint src/**",
     "prepare": "yarn compile",
     "dev": "tsc-watch --onSuccess \"yarn compile\"",
     "test": "jest"
@@ -20,6 +20,8 @@
   "devDependencies": {
     "@babel/core": "^7.11.6",
     "@babel/runtime": "^7.11.2",
+    "@testing-library/jest-native": "^3.4.3",
+    "@testing-library/react-native": "^7.1.0",
     "@types/jest": "^26.0.14",
     "@types/react": "^17.0.0",
     "@types/react-native": "^0.63.19",
@@ -61,6 +63,7 @@
       "jsx",
       "json",
       "node"
-    ]
+    ],
+    "setupFilesAfterEnv": ["@testing-library/jest-native/extend-expect"]
   }
 }

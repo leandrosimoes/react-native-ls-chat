@@ -1,15 +1,15 @@
 import * as React from 'react'
 import { View } from 'react-native'
 
-import Header from './components/header'
-import Body from './components/body'
-import Footer from './components/footer'
+import Header from './components/Header'
+import Body from './components/Body'
+import Footer from './components/Footer'
 
 import { IHeaderProps, ILsChatMessage } from './interfaces'
 
 import styles from './styles'
 
-interface IChatProps {
+export interface IChatProps {
     headerProps?: IHeaderProps
     messages?: ILsChatMessage[]
 }
