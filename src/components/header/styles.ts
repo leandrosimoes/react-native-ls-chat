@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { IThemedComponentProps } from '../../theme'
+import { COMMON_COLORS, IThemedComponentProps } from '../../theme'
 
 const style = (props: IThemedComponentProps) => StyleSheet.create({
     container: {
@@ -8,9 +8,8 @@ const style = (props: IThemedComponentProps) => StyleSheet.create({
         alignItems: 'center',
         height: 60,
         backgroundColor: props.theme?.DEFAULT_BG_COLOR.toString(),
-        elevation: 4,
-        shadowColor: 'black',
-        shadowOpacity: 0.8,
+        borderBottomColor: COMMON_COLORS.BLACK,
+        borderBottomWidth: .5,
     },
     title: {
         marginLeft: 15,
