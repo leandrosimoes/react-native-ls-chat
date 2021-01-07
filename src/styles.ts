@@ -1,7 +1,11 @@
 import { StyleSheet } from 'react-native'
+import { IThemedComponentProps } from './theme'
 
-export default StyleSheet.create({
+const styles = (props: IThemedComponentProps) => StyleSheet.create({
     container: {
         flex: 1,
+        backgroundColor: props.theme?.DEFAULT_BG_COLOR
     },
 })
+
+export default styles

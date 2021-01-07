@@ -1,5 +1,5 @@
 import React from 'react'
-import LsChat from 'react-native-ls-chat'
+import LsChat, { LsChatTheme } from 'react-native-ls-chat'
 
 const mockMessages = [
     {
@@ -16,13 +16,9 @@ const mockMessages = [
     },
 ]
 
-const headerContainerStyle = {
-    backgroundColor: '#FFF',
-}
-
 const options = {
+    theme: LsChatTheme.DARK,
     headerProps: {
-        containerStyle: headerContainerStyle,
         title: 'Example Chat!',
         onCloseButtonPress: () => {},
     },

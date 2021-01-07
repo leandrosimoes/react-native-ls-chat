@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { StyleProp, ViewStyle } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
-import COLORS from '../../colors'
+import { ThemeContext } from '../../theme'
 
 export { default as ICONS } from './icons'
 
@@ -24,8 +24,8 @@ interface IIconProps {
 }
 
 const Icon: React.FC<IIconProps> = ({
-    fill = COLORS.DEFAULT_COLOR,
-    stroke = 'none',
+    fill,
+    stroke,
     path,
     width = 20,
     height = 20,
@@ -34,10 +34,12 @@ const Icon: React.FC<IIconProps> = ({
 }) => {
     if (!path || path.length === 0) return null
 
+    const theme = React.useContext(ThemeContext)
+
     return (
         <Svg width={width} height={height} style={[{ transform: [{ scale: size }] }, style]}>
             {path.map((p, i) => (
-                <Path key={i} d={p} fill={fill} stroke={stroke} />
+                <Path key={i} d={p} fill={fill || theme.DEFAULT_COLOR} stroke={stroke || theme.DEFAULT_COLOR} />
             ))}
         </Svg>
     )

@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
 
-import COLORS from '../../../colors'
 import { IHeaderProps } from '../../../interfaces'
 
 import Icon, { ICONS } from '../../Icon'
@@ -21,7 +20,7 @@ const CloseButton: React.FC<IHeaderProps> = ({ onCloseButtonPress }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-                <Icon path={ICONS.timesCircle} fill={COLORS.CLOSE_ICON_COLOR} />
+                <Icon path={ICONS.timesCircle} />
             </View>
         </TouchableWithoutFeedback>
     )

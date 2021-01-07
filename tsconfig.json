@@ -15,6 +15,7 @@
     "skipLibCheck": true,
     "moduleResolution": "node",
     "allowJs": true,
+    "preserveConstEnums": true,
   },
   "include": ["src"],
   "exclude": ["./node_modules/**/*", "**/__tests__/*", "**/*.test.*"]

@@ -1,4 +1,4 @@
-import { ViewStyle, GestureResponderEvent } from 'react-native'
+import { GestureResponderEvent } from 'react-native'
 
 export interface ILsChatUser {
     id: number
@@ -15,6 +15,5 @@ export interface ILsChatMessage {
 export interface IHeaderProps {
     isVisible?: boolean
     title?: string
-    containerStyle?: ViewStyle
     onCloseButtonPress?: { (event: GestureResponderEvent): void }
 }
