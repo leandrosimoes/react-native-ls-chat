@@ -11,6 +11,12 @@ const styles = (props: IThemedComponentProps) => StyleSheet.create({
         flex: 1,
         marginHorizontal: 5,
     },
+    messageWrapperFromUser: {
+        alignItems: 'flex-start'
+    },
+    messageWrapperFromAnotherUser: {
+        alignItems: 'flex-end'
+    },
     message: {
         flex: 1,
         backgroundColor: props.theme?.MESSAGE_BG_COLOR,
