@@ -12,6 +12,8 @@ export interface ILsChatMessage {
     text: string
     user: ILsChatUser
     replyingTo?: ILsChatMessage
+    isDelivered?: boolean
+    isRead?: boolean
 }
 
 export interface IHeaderProps {

@@ -36,7 +36,7 @@ const ContentWrapper: React.FC<IChatProps> = ({
     return (
         <View style={styles({ theme }).container}>
             <Header user={user} {...headerProps} />
-            <Body messages={messages} />
+            <Body user={user} messages={messages} />
             <Footer
                 user={user}
                 onSendMessage={onSendMessage}
