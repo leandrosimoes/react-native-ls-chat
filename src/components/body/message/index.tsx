@@ -17,6 +17,38 @@ interface IMessageProps {
     }
 }
 
+interface IArrowProps {
+    position: 'right' | 'left'
+}
+
+const Arrow: React.FC<IArrowProps> = ({ position }) => {
+    const theme = React.useContext(ThemeContext)
+
+    const themedStyles = styles({ theme })
+
+    return (
+        <>
+        <View
+            style={[
+                themedStyles.messageArrow,
+                position === 'right'
+                    ? themedStyles.messageArrowRight
+                    : themedStyles.messageArrowLeft,
+            ]}
+        />
+        <View
+            style={[
+                themedStyles.messageArrow,
+                position === 'right'
+                    ? themedStyles.messageArrowRight
+                    : themedStyles.messageArrowLeft,
+                themedStyles.messageArrowShadow,
+            ]}
+        />
+        </>
+    )
+}
+
 const Message: React.FC<IMessageProps> = ({
     loggedUser,
     message,
@@ -54,11 +86,20 @@ const Message: React.FC<IMessageProps> = ({
                     </Text>
                 )}
                 <View style={messageStyle}>
-                    {isFromCurrentUser && showUser && <View style={[themedStyles.messageArrow, themedStyles.messageArrowRight]} />}
-                    {!isFromCurrentUser && showUser && <View style={[themedStyles.messageArrow, themedStyles.messageArrowLeft]} />}
+                    {isFromCurrentUser && showUser && (
+                        <Arrow position='right' />
+                    )}
+                    {!isFromCurrentUser && showUser && (
+                        <Arrow position='left' />
+                    )}
                     {!isFromCurrentUser && showUser && (
                         <View style={themedStyles.messageUserWrapper}>
-                            {loggedUser.photo && <Image style={themedStyles.messageUserPhoto} source={{ uri: loggedUser.photo }} />}
+                            {loggedUser.photo && (
+                                <Image
+                                    style={themedStyles.messageUserPhoto}
+                                    source={{ uri: loggedUser.photo }}
+                                />
+                            )}
                             <Text style={themedStyles.messageUserName}>
                                 {messageUser.name}
                             </Text>

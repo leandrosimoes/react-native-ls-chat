@@ -32,14 +32,18 @@ const styles = (props: IThemedComponentProps) =>
             },
             shadowOpacity: 0.2,
             shadowRadius: 2,
+            zIndex: 3,
+            position: 'relative'
         },
         messageFromUser: {
             alignItems: 'flex-end',
             backgroundColor: props.theme?.USER_MESSAGE_BG_COLOR,
+            borderTopRightRadius: 0,
         },
         messageFromAnotherUser: {
             alignItems: 'flex-start',
             backgroundColor: props.theme?.MESSAGE_BG_COLOR,
+            borderTopLeftRadius: 0,
         },
         messageUserWrapper: {
             flexDirection: 'row',
@@ -88,17 +92,18 @@ const styles = (props: IThemedComponentProps) =>
             height: 0,
             backgroundColor: 'transparent',
             borderStyle: 'solid',
-            borderLeftWidth: 50,
-            borderRightWidth: 50,
-            borderBottomWidth: 50,
+            borderLeftWidth: 12,
+            borderRightWidth: 12,
+            borderBottomWidth: 12,
             borderLeftColor: 'transparent',
             borderRightColor: 'transparent',
             position: 'absolute',
-            top: -7.5,
+            top: -2,
+            zIndex: 2,
         },
         messageArrowLeft: {
             borderBottomColor: props.theme?.MESSAGE_BG_COLOR,
-            left: -10,
+            left: -16,
             transform: [
                 {
                     rotate: '45deg',
@@ -107,13 +112,19 @@ const styles = (props: IThemedComponentProps) =>
         },
         messageArrowRight: {
             borderBottomColor: props.theme?.USER_MESSAGE_BG_COLOR,
-            right: -10,
+            right: -16,
             transform: [
                 {
                     rotate: '-45deg',
                 }
             ]
         },
+        messageArrowShadow: {
+            borderBottomColor: COMMON_COLORS.BLACK,
+            opacity: .1,
+            top: 1,            
+            zIndex: 1,
+        }
     })
 
 export default styles

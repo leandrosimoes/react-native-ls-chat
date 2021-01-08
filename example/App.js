@@ -81,7 +81,7 @@ const App = () => {
     
     const options = {
         user,
-        theme: LsChatTheme.DARK,
+        theme: LsChatTheme.LIGHT,
         headerProps: {
             title: 'Example Chat!',
             onCloseButtonPress,
