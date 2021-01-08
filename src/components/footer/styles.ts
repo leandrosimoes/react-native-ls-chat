@@ -18,6 +18,13 @@ const styles = (props: IThemedComponentProps) => StyleSheet.create({
         backgroundColor: props.theme?.INPUT_BG_COLOR,
         color: props.theme?.INPUT_FG_COLOR,
         paddingHorizontal: 10,
+    },
+    sendButton: {
+        width: 60,
+        height: 60,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: props.theme?.PRIMARY_BUTTON_BG_COLOR,
     }
 })
 

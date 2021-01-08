@@ -12,9 +12,15 @@ const style = (props: IThemedComponentProps) => StyleSheet.create({
         borderBottomWidth: .5,
     },
     title: {
-        marginLeft: 15,
         color: props.theme?.DEFAULT_COLOR.toString()
     },
+    userPhoto: {
+        width: 40,
+        height: 40,
+        borderRadius: 40,
+        resizeMode: 'cover',
+        marginLeft: 15,
+    }
 })
 
 export default style

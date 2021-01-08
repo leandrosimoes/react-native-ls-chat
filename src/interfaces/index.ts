@@ -8,8 +8,10 @@ export interface ILsChatUser {
 
 export interface ILsChatMessage {
     id: number
+    time: number
     text: string
     user: ILsChatUser
+    replyingTo?: ILsChatMessage
 }
 
 export interface IHeaderProps {
