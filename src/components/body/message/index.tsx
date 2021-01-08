@@ -54,6 +54,8 @@ const Message: React.FC<IMessageProps> = ({
                     </Text>
                 )}
                 <View style={messageStyle}>
+                    {isFromCurrentUser && showUser && <View style={[themedStyles.messageArrow, themedStyles.messageArrowRight]} />}
+                    {!isFromCurrentUser && showUser && <View style={[themedStyles.messageArrow, themedStyles.messageArrowLeft]} />}
                     {!isFromCurrentUser && showUser && (
                         <View style={themedStyles.messageUserWrapper}>
                             {loggedUser.photo && <Image style={themedStyles.messageUserPhoto} source={{ uri: loggedUser.photo }} />}

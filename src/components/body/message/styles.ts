@@ -7,7 +7,7 @@ const styles = (props: IThemedComponentProps) =>
     StyleSheet.create({
         messageWrapper: {
             flex: 1,
-            marginHorizontal: 15,
+            marginHorizontal: 25,
         },
         messageWrapperFromUser: {
             alignItems: 'flex-end',
@@ -67,10 +67,10 @@ const styles = (props: IThemedComponentProps) =>
             bottom: 9,
             right: 30,
         },
-        messageStatusIcon: { 
-            position: 'absolute', 
-            bottom: 5, 
-            right: 5 ,
+        messageStatusIcon: {
+            position: 'absolute',
+            bottom: 5,
+            right: 5,
         },
         messageStatusDeliveredIcon1: { right: 10 },
         messageStatusDeliveredIcon2: { right: 5 },
@@ -79,9 +79,40 @@ const styles = (props: IThemedComponentProps) =>
             textAlign: 'center',
             width: width - 20,
             fontSize: 12,
-            opacity: .8,
+            opacity: 0.8,
             marginBottom: 15,
             marginTop: 20,
+        },
+        messageArrow: {
+            width: 0,
+            height: 0,
+            backgroundColor: 'transparent',
+            borderStyle: 'solid',
+            borderLeftWidth: 50,
+            borderRightWidth: 50,
+            borderBottomWidth: 50,
+            borderLeftColor: 'transparent',
+            borderRightColor: 'transparent',
+            position: 'absolute',
+            top: -7.5,
+        },
+        messageArrowLeft: {
+            borderBottomColor: props.theme?.MESSAGE_BG_COLOR,
+            left: -10,
+            transform: [
+                {
+                    rotate: '45deg',
+                }
+            ]
+        },
+        messageArrowRight: {
+            borderBottomColor: props.theme?.USER_MESSAGE_BG_COLOR,
+            right: -10,
+            transform: [
+                {
+                    rotate: '-45deg',
+                }
+            ]
         },
     })
 
