@@ -20,6 +20,10 @@ const Header: React.FC<IHeaderWithUserProps> = ({
     const theme = React.useContext(ThemeContext)
     const themedStyle = styles({ theme })
 
+    if (title.length > 30) {
+        title = title.substr(0, 30) + '...'
+    }
+
     return (
         <View style={themedStyle.container} accessibilityRole="header" accessibilityLabel="Header of the chat window">
             {user && user.photo && <Image source={{ uri: user.photo }} style={themedStyle.userPhoto} />}

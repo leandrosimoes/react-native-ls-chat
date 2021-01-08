@@ -12,7 +12,10 @@ const style = (props: IThemedComponentProps) => StyleSheet.create({
         borderBottomWidth: .5,
     },
     title: {
-        color: props.theme?.DEFAULT_COLOR.toString()
+        color: props.theme?.DEFAULT_COLOR.toString(),
+        flex: 1,
+        overflow: 'hidden',
+        textAlign: 'center',
     },
     userPhoto: {
         width: 40,

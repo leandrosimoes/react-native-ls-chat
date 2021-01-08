@@ -3,7 +3,8 @@ import { FlatList, View } from 'react-native'
 
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { ThemeContext } from '../../theme'
-import Message from './message'
+import Message from './Message'
+import EmptyMessages from './EmptyMessages'
 
 import styles from './styles'
 
@@ -29,7 +30,7 @@ const Body: React.FC<IBodyProps> = ({ messages, user }) => {
         console.log(message, loggedUser)
     }
 
-    if (!messages || messages.length === 0) return null
+    if (!messages || messages.length === 0) return <EmptyMessages />
 
     const formatedMessages: TLsChatMessageDesign[] = messages.map(message => {
         const { time, user: messageUser } = message
@@ -38,8 +39,6 @@ const Body: React.FC<IBodyProps> = ({ messages, user }) => {
         const showDateOnTop =
             !lastDate ||
             lastDate.toDateString() !== messageDate.toDateString()
-
-        console.log(lastUser, messageUser)
 
         const showUser = !lastUser || lastUser !== messageUser.id
 
