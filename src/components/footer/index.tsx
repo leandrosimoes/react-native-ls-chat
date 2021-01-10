@@ -2,6 +2,7 @@ import * as React from 'react'
 import { TextInput, TouchableWithoutFeedback, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../theme'
+import { guid } from '../../utils'
 import Icon from '../Icon'
 import { ICONS } from '../Icon/icons'
 
@@ -11,7 +12,7 @@ interface IFooterProps {
     user: ILsChatUser
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessSendMessage: { (message: ILsChatMessage): void }
-    onErrorSendMessage: { (error: any): void }
+    onErrorSendMessage: { (message: ILsChatMessage, error: any): void }
 }
 
 const Footer: React.FC<IFooterProps> = ({ user, onSendMessage, onSuccessSendMessage, onErrorSendMessage }) => {
@@ -24,23 +25,26 @@ const Footer: React.FC<IFooterProps> = ({ user, onSendMessage, onSuccessSendMess
     const onSendButtonPress = async () => {
         if (!message) return
 
-        try {
-            const messageSend = await onSendMessage({
-                id: 0,
-                text: message,
-                user,
-                time: new Date().getTime()
-            })
+        const messageToSend = {
+            id: guid(),
+            text: message,
+            user,
+            time: new Date().getTime()
+        }
 
+        setMessage('')
+        inputRef?.current?.blur()
+
+        try {
+            const messageSend = await onSendMessage(messageToSend)
+                
             if (messageSend) {
-                setMessage('')
-                inputRef?.current?.blur()
                 onSuccessSendMessage(messageSend)
             } else {
-                onErrorSendMessage('Unknown Error')
+                onErrorSendMessage(messageToSend, 'Unknown Error')
             }
         } catch (error) {
-            onErrorSendMessage(error)
+            onErrorSendMessage(messageToSend, error)
         }
     }
 

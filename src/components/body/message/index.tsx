@@ -1,8 +1,9 @@
 import * as React from 'react'
-import { Image, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Animated, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 import Icon, { EIconSize } from '../../Icon'
+import Arrow from './Arrow'
 
 import { ICONS } from '../../Icon/icons'
 import styles from './styles'
@@ -12,41 +13,16 @@ interface IMessageProps {
     message: ILsChatMessage
     showDateOnTop: boolean
     showUser: boolean
+    isSelected: boolean
     onMessageItemLongPress: {
-        (message: ILsChatMessage, loggedUser: ILsChatUser): void
+        (message: ILsChatMessage): void
     }
 }
 
-interface IArrowProps {
-    position: 'right' | 'left'
-}
-
-const Arrow: React.FC<IArrowProps> = ({ position }) => {
-    const theme = React.useContext(ThemeContext)
-
-    const themedStyles = styles({ theme })
-
-    return (
-        <>
-        <View
-            style={[
-                themedStyles.messageArrow,
-                position === 'right'
-                    ? themedStyles.messageArrowRight
-                    : themedStyles.messageArrowLeft,
-            ]}
-        />
-        <View
-            style={[
-                themedStyles.messageArrow,
-                position === 'right'
-                    ? themedStyles.messageArrowRight
-                    : themedStyles.messageArrowLeft,
-                themedStyles.messageArrowShadow,
-            ]}
-        />
-        </>
-    )
+enum EStatusMessage {
+    WAITING,
+    DELIVERED,
+    VIEWED,
 }
 
 const Message: React.FC<IMessageProps> = ({
@@ -54,11 +30,13 @@ const Message: React.FC<IMessageProps> = ({
     message,
     showDateOnTop,
     showUser,
+    isSelected,
     onMessageItemLongPress,
 }) => {
+    const animatedOpacity = React.useRef(new Animated.Value(1)).current
     const theme = React.useContext(ThemeContext)
-
     const themedStyles = styles({ theme })
+    const [isLoading, setIsLoading] = React.useState(true)
 
     const { user: messageUser, time, text, isDelivered, isRead } = message
     const isFromCurrentUser = loggedUser.id === messageUser.id
@@ -73,24 +51,65 @@ const Message: React.FC<IMessageProps> = ({
         isFromCurrentUser
             ? themedStyles.messageFromUser
             : themedStyles.messageFromAnotherUser,
+        isSelected 
+            ? themedStyles.messageSelected 
+            : {}
     ]
     const messageDate = new Date(time)
+    const status = !isDelivered && !isRead
+        ? EStatusMessage.WAITING
+        : !isRead
+        ? EStatusMessage.DELIVERED
+        : EStatusMessage.VIEWED
+
+    const pulseAnimation = Animated.loop(
+        Animated.sequence(
+            [
+                Animated.timing(
+                    animatedOpacity,
+                    {
+                        toValue: 0.5,
+                        duration: 1000,
+                        useNativeDriver: false,
+                    }
+                ),
+                Animated.timing(
+                    animatedOpacity,
+                    {
+                        toValue: 1,
+                        duration: 1000,
+                        useNativeDriver: false,
+                    }
+                )
+            ]
+        )
+    )
+
+    React.useEffect(() => {
+        if (status === EStatusMessage.WAITING) {
+            setIsLoading(true)
+            pulseAnimation.start()
+        } else {
+            setIsLoading(false)
+            pulseAnimation.stop()
+        }
+    }, [message])
 
     return (
         <TouchableWithoutFeedback
-            onLongPress={() => onMessageItemLongPress(message, loggedUser)}>
+            onLongPress={() => onMessageItemLongPress(message)}>
             <View style={wrapperStyle}>
                 {showDateOnTop && (
                     <Text style={themedStyles.dateSeparator}>
                         {messageDate.toDateString()}
                     </Text>
                 )}
-                <View style={messageStyle}>
+                <Animated.View style={[messageStyle, { opacity: isLoading ? animatedOpacity : 1 }]}>
                     {isFromCurrentUser && showUser && (
-                        <Arrow position='right' />
+                        <Arrow position='right' isSelected={isSelected} />
                     )}
                     {!isFromCurrentUser && showUser && (
-                        <Arrow position='left' />
+                        <Arrow position='left' isSelected={isSelected} />
                     )}
                     {!isFromCurrentUser && showUser && (
                         <View style={themedStyles.messageUserWrapper}>
@@ -109,7 +128,7 @@ const Message: React.FC<IMessageProps> = ({
                     <Text style={themedStyles.messageDate}>
                         {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
                     </Text>
-                    {!isDelivered && !isRead && (
+                    {status === EStatusMessage.WAITING && (
                         <Icon
                             style={themedStyles.messageStatusIcon}
                             path={ICONS.clock}
@@ -118,7 +137,7 @@ const Message: React.FC<IMessageProps> = ({
                             size={EIconSize.TINY}
                         />
                     )}
-                    {isDelivered && !isRead && (
+                    {status === EStatusMessage.DELIVERED && (
                         <Icon
                             style={themedStyles.messageStatusIcon}
                             path={ICONS.check}
@@ -127,7 +146,7 @@ const Message: React.FC<IMessageProps> = ({
                             size={EIconSize.TINY}
                         />
                     )}
-                    {isRead && (
+                    {status === EStatusMessage.VIEWED && (
                         <>
                             <Icon
                                 style={[
@@ -151,7 +170,7 @@ const Message: React.FC<IMessageProps> = ({
                             />
                         </>
                     )}
-                </View>
+                </Animated.View>
             </View>
         </TouchableWithoutFeedback>
     )

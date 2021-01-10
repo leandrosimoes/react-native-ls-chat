@@ -15,73 +15,134 @@ const user2 = {
     photo: 'https://avatars3.githubusercontent.com/u/5066378?s=400&u=98d81da11220a6d0f7f51532e2c3e949b50a445b&v=4',
 }
 
-const mockMessages = [
+let mockMessages = [
     {
-        id: 1,
+        id: '1',
         text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.",
         time: currentDate.getTime(),
         user: user2,
         isRead: true
     },
     {
-        id: 2,
+        id: '2',
         text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         time: currentDate.setMinutes(currentDate.getMinutes() + 1),
         user,
         isRead: true
     },
     {
-        id: 3,
+        id: '3',
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
         time: currentDate.setMinutes(currentDate.getMinutes() + 2),
         user: user2,
         isRead: true
     },
     {
-        id: 4,
+        id: '4',
         text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
         time: currentDate.setMinutes(currentDate.getMinutes() + 2),
         user: user2,
-        isDelivered: true
+        isRead: true
     },
     {
-        id: 5,
+        id: '5',
         text: "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
         time: currentDate.setDate(currentDate.getDate() + 1),
         user,
+        isRead: true
     },
 ]
+
+const delay = () => {
+    return new Promise(resolve => {
+        setTimeout(resolve, 3000)
+    })
+}
+
+const asyncForEach = async (array, callback) => {
+	for (let index = 0; index < array.length; index++) {
+		await callback(array[index], index, array);
+	}
+}
 
 const App = () => {
     const [messages, setMessages] = useState(mockMessages)
 
     const onCloseButtonPress = () => {
         setMessages([])
-        
-        console.log('close')
     }
     
     const onSendMessage = async (message) => {
+        mockMessages = [...mockMessages, message]
+
+        // INCLUDE THE MESSAGE WITH WAITING STATUS
+        setMessages(mockMessages)
+
         // SEND THIS MESSAGE TO SERVER
-        console.log(message)
-    
+        await delay()
+   
         // RETURN THE MESSAGE WITH ID THAT WAS INCLUDED ON SERVER
         return message
     }
     
     const onSuccessSendMessage = async (message) => {
-        setMessages([...messages, message])
+        // IN CASE OF SUCCESS, CHANGE THE MESSAGE STATUS DO DELIVERED
+        await asyncForEach(mockMessages, (m) => {
+            if (m.id === message.id) {
+                m.isDelivered = true
+            }
+        })
+
+        mockMessages = [...mockMessages]
+
+        setMessages(mockMessages)
+
+        await delay()
+
+        // IN CASE OF SUCCESS, CHANGE THE MESSAGE STATUS DO DELIVERED
+        await asyncForEach(mockMessages, (m) => {
+            if (m.id === message.id) {
+                m.isRead = true
+            }
+        })
+
+        mockMessages = [...mockMessages]
+
+        setMessages(mockMessages)
+    }
+    
+    const onErrorSendMessage = async (message, error) => {
+        // IN CASE OF ERROR, REMOVE THE MESSAGE FROM THE LIST
+        mockMessages = [...mockMessages.filter(m => m.id !== message.id)]
+        
+        setMessages(mockMessages)
+
+        console.log(error)
+    }
+    
+    const onDeleteMessage = async (message) => {
+        // DELETE THIS MESSAGE FROM SERVER
+        console.log(message)
+    
+        // RETURN THE MESSAGE WITH ID THAT WAS DELETED ON SERVER
+        return message
+    }
+    
+    const onSuccessDeleteMessage = async (message) => {
+        mockMessages = [...mockMessages.filter(m => m.id !== message.id)]
+
+        setMessages(mockMessages)
 
         console.log(message)
     }
     
-    const onErrorSendMessage = async (error) => {
+    const onErrorDeleteMessage = async (error) => {
         console.log(error)
     }
     
     const options = {
         user,
-        theme: LsChatTheme.LIGHT,
+        theme: LsChatTheme.DARK,
         headerProps: {
             title: 'Example Chat!',
             onCloseButtonPress,
@@ -89,6 +150,9 @@ const App = () => {
         onSendMessage,
         onSuccessSendMessage,
         onErrorSendMessage,
+        onDeleteMessage,
+        onSuccessDeleteMessage,
+        onErrorDeleteMessage,
     }
 
     return <LsChat messages={messages} {...options} />

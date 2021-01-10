@@ -17,6 +17,7 @@ const styles = (props: IThemedComponentProps) =>
         },
         message: {
             flex: 1,
+            minWidth: 80,
             flexDirection: 'column',
             paddingHorizontal: 10,
             paddingVertical: 10,
@@ -124,6 +125,9 @@ const styles = (props: IThemedComponentProps) =>
             opacity: .1,
             top: 1,            
             zIndex: 1,
+        },
+        messageSelected: {
+            backgroundColor: props.theme?.MESSAGE_SELECTED_BG_COLOR,
         }
     })
 

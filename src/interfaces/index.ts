@@ -7,7 +7,7 @@ export interface ILsChatUser {
 }
 
 export interface ILsChatMessage {
-    id: number
+    id: string
     time: number
     text: string
     user: ILsChatUser
