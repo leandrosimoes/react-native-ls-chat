@@ -14,12 +14,15 @@ const styles = (props: IThemedComponentProps) =>
             justifyContent: 'flex-start',
         },
         controlsWrapper: {
-            flexDirection: 'row'
+            flexDirection: 'row',
+            position: 'relative',
+            top: -60,
         },
         controlButton: {
             backgroundColor: props.theme?.CONTROLS_BG_COLOR,
             flex: 1,
-            height: 60,
+            height: 70,
+            paddingTop: 10,
             justifyContent: 'center',
             alignItems: 'center',
             elevation: 4,

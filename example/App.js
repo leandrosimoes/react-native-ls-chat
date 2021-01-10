@@ -39,7 +39,7 @@ let mockMessages = [
     },
     {
         id: '4',
-        text: "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
+        text: "Duis ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.",
         time: currentDate.setMinutes(currentDate.getMinutes() + 2),
         user: user2,
         isRead: true

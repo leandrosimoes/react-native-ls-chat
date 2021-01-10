@@ -10,6 +10,7 @@ const style = (props: IThemedComponentProps) => StyleSheet.create({
         backgroundColor: props.theme?.DEFAULT_BG_COLOR.toString(),
         borderBottomColor: COMMON_COLORS.BLACK,
         borderBottomWidth: .5,
+        zIndex: 9,
     },
     title: {
         color: props.theme?.DEFAULT_COLOR.toString(),

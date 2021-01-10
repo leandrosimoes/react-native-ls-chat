@@ -16,7 +16,7 @@ export interface IChatProps {
     theme?: ETheme
     headerProps?: IHeaderProps
     messages?: ILsChatMessage[]
-    messageSelectionEnabled?: boolean,
+    messageSelectionEnabled?: boolean
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessSendMessage: { (message: ILsChatMessage): void }
     onErrorSendMessage: { (error: any): void }
@@ -40,20 +40,32 @@ const ContentWrapper: React.FC<IChatProps> = ({
     onErrorDeleteMessage,
 }) => {
     const theme = useContext(ThemeContext)
+    const [replyingMessage, setReplyingMessage] = React.useState<
+        ILsChatMessage | undefined
+    >()
+
+    const onReplyControlPress = (message: ILsChatMessage) => {
+        console.log(message)
+
+        setReplyingMessage(message)
+    }
 
     return (
         <View style={styles({ theme }).container}>
             <Header user={user} {...headerProps} />
-            <Body 
-                user={user} 
-                messages={messages} 
+            <Body
+                user={user}
+                messages={messages}
                 messageSelectionEnabled={messageSelectionEnabled}
+                onReplyControlPress={onReplyControlPress}
                 onDeleteMessage={onDeleteMessage}
                 onSuccessDeleteMessage={onSuccessDeleteMessage}
                 onErrorDeleteMessage={onErrorDeleteMessage}
             />
             <Footer
                 user={user}
+                replyingMessage={replyingMessage}
+                onCancelReplyingMessage={() => setReplyingMessage(undefined)}
                 onSendMessage={onSendMessage}
                 onSuccessSendMessage={onSuccessSendMessage}
                 onErrorSendMessage={onErrorSendMessage}

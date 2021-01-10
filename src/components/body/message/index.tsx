@@ -105,10 +105,10 @@ const Message: React.FC<IMessageProps> = ({
                     </Text>
                 )}
                 <Animated.View style={[messageStyle, { opacity: isLoading ? animatedOpacity : 1 }]}>
-                    {isFromCurrentUser && showUser && (
+                    {isFromCurrentUser && (showDateOnTop || showUser) && (
                         <Arrow position='right' isSelected={isSelected} />
                     )}
-                    {!isFromCurrentUser && showUser && (
+                    {!isFromCurrentUser && (showDateOnTop || showUser) && (
                         <Arrow position='left' isSelected={isSelected} />
                     )}
                     {!isFromCurrentUser && showUser && (

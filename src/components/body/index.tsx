@@ -13,6 +13,7 @@ interface IBodyProps {
     user: ILsChatUser
     messages: ILsChatMessage[]
     messageSelectionEnabled: boolean
+    onReplyControlPress: { (replyingMessage: ILsChatMessage): void }
     onDeleteMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessDeleteMessage: { (message: ILsChatMessage): void }
     onErrorDeleteMessage: { (error: any): void }
@@ -27,6 +28,7 @@ const Body: React.FC<IBodyProps> = ({
     messages,
     user,
     messageSelectionEnabled,
+    onReplyControlPress,
     onDeleteMessage,
     onSuccessDeleteMessage,
     onErrorDeleteMessage,
@@ -45,7 +47,7 @@ const Body: React.FC<IBodyProps> = ({
         if (messageSelectionEnabled) setSelectedMessage(message)
     }
 
-    const onDeleteControlPress = async () => {
+    const onDeleteControlButtonPress = async () => {
         if (!selectedMessage || selectedMessage.user.id !== user.id) return
 
         try {
@@ -57,10 +59,13 @@ const Body: React.FC<IBodyProps> = ({
         }
     }
 
-    const onReplyControlPress = () => {
+    const onReplyControlButtonPress = () => {
         if (!selectedMessage || !selectedMessage.id) return
 
-        console.log(selectedMessage)
+        selectedMessage.text = `${selectedMessage.text.substr(0, 100)}...`
+
+        onReplyControlPress(selectedMessage)
+
         setSelectedMessage(undefined)
     }
 
@@ -91,8 +96,8 @@ const Body: React.FC<IBodyProps> = ({
                 message={selectedMessage}
                 loggedUser={user}
                 onPressControlBody={onPressControlBody}
-                onDeleteControlPress={onDeleteControlPress}
-                onReplyControlPress={onReplyControlPress}
+                onDeleteControlButtonPress={onDeleteControlButtonPress}
+                onReplyControlButtonPress={onReplyControlButtonPress}
             />
             <FlatList
                 ref={messagesListRef}
