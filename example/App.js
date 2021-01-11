@@ -95,11 +95,14 @@ const asyncForEach = async (array, callback) => {
 
 let interval = null
 const App = () => {
-    const [messages, setMessages] = useState(mockMessages)
+    const [messages, setMessages] = useState([])
     const [isTyping, setIsTyping] = useState(false)
     const [isFeching, setIsFeching] = useState(false)
+    const [isLoading, setIsLoading] = useState(true)
 
     const onCloseButtonPress = () => {
+        setIsLoading(false)
+        setIsTyping(false)
         setMessages([])
     }
 
@@ -107,6 +110,7 @@ const App = () => {
         mockMessages = [...mockMessages, message]
 
         // INCLUDE THE MESSAGE WITH WAITING STATUS
+        setIsTyping(false)
         setMessages(mockMessages)
 
         // SEND THIS MESSAGE TO SERVER
@@ -126,6 +130,7 @@ const App = () => {
 
         mockMessages = [...mockMessages]
 
+        setIsTyping(false)
         setMessages(mockMessages)
 
         await delay()
@@ -139,6 +144,7 @@ const App = () => {
 
         mockMessages = [...mockMessages]
 
+        setIsTyping(false)
         setMessages(mockMessages)
     }
 
@@ -146,6 +152,7 @@ const App = () => {
         // IN CASE OF ERROR, REMOVE THE MESSAGE FROM THE LIST
         mockMessages = [...mockMessages.filter((m) => m.id !== message.id)]
 
+        setIsTyping(false)
         setMessages(mockMessages)
 
         console.log(error)
@@ -162,24 +169,28 @@ const App = () => {
     const onSuccessDeleteMessage = async (message) => {
         mockMessages = [...mockMessages.filter((m) => m.id !== message.id)]
 
+        setIsTyping(false)
         setMessages(mockMessages)
 
         console.log(message)
     }
 
     const onErrorDeleteMessage = async (error) => {
+        setIsTyping(false)
+
         console.log(error)
     }
 
     const onMessageTextInputChange = (text) => {
-        console.log(text)
         setIsTyping(!!text)
+        
+        console.log(text)
     }
 
     const onReachEndOfMessagesList = async () => {
         // LOAD MORE MESSAGES FROM SERVER HERE
 
-        if (!mockMessages.find(m => m.id === '8')) {
+        if (!mockMessages.find((m) => m.id === '8')) {
             setIsFeching(true)
 
             await delay()
@@ -194,11 +205,18 @@ const App = () => {
                 },
                 ...mockMessages,
             ]
-    
+
             setMessages(mockMessages)
             setIsFeching(false)
         }
     }
+
+    useEffect(() => {
+        setTimeout(() => {
+            setMessages(mockMessages)
+            setIsLoading(false)
+        }, 2000)
+    }, [])
 
     const options = {
         user,
@@ -209,6 +227,7 @@ const App = () => {
         },
         isTyping,
         isFeching,
+        isLoading,
         onReachEndOfMessagesList,
         onMessageTextInputChange,
         onSendMessage,

@@ -8,9 +8,7 @@ interface ILoadingIndicatorProps {
     isFeching: boolean
 }
 
-const LoadingIndicator: React.FC<ILoadingIndicatorProps> = ({
-    isFeching,
-}) => {
+const LoadingIndicator: React.FC<ILoadingIndicatorProps> = ({ isFeching }) => {
     const theme = React.useContext(ThemeContext)
     const themedStyles = styles({ theme })
     const animatedOpacity = React.useRef(new Animated.Value(0)).current
@@ -59,7 +57,7 @@ const LoadingIndicator: React.FC<ILoadingIndicatorProps> = ({
             Animated.timing(animatedScaleDot3, {
                 toValue: 1,
                 ...basicOptions,
-            })
+            }),
         ])
     )
 

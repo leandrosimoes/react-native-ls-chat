@@ -19,7 +19,8 @@ export interface IChatProps {
     messageSelectionEnabled?: boolean
     isTyping?: boolean
     isFeching?: boolean
-    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number; }): void }
+    isLoading?: boolean
+    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number }): void }
     onMessageTextInputChange: { (text: string): void }
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessSendMessage: { (message: ILsChatMessage): void }
@@ -38,6 +39,7 @@ const ContentWrapper: React.FC<IChatProps> = ({
     messageSelectionEnabled = true,
     isTyping = false,
     isFeching = false,
+    isLoading = false,
     onReachEndOfMessagesList,
     onMessageTextInputChange,
     onSendMessage,
@@ -67,6 +69,7 @@ const ContentWrapper: React.FC<IChatProps> = ({
                 messageSelectionEnabled={messageSelectionEnabled}
                 isTyping={isTyping}
                 isFeching={isFeching}
+                isLoading={isLoading}
                 onReachEndOfMessagesList={onReachEndOfMessagesList}
                 onReplyControlPress={onReplyControlPress}
                 onDeleteMessage={onDeleteMessage}
@@ -75,6 +78,7 @@ const ContentWrapper: React.FC<IChatProps> = ({
             />
             <Footer
                 user={user}
+                isLoading={isLoading}
                 replyingMessage={replyingMessage}
                 onMessageTextInputChange={onMessageTextInputChange}
                 onCancelReplyingMessage={() => setReplyingMessage(undefined)}
@@ -97,6 +101,7 @@ const LsChat: React.FC<IChatProps> = ({
     messageSelectionEnabled = true,
     isTyping = false,
     isFeching = false,
+    isLoading = false,
     onReachEndOfMessagesList,
     onMessageTextInputChange,
     onSendMessage,
@@ -120,6 +125,7 @@ const LsChat: React.FC<IChatProps> = ({
                 messageSelectionEnabled={messageSelectionEnabled}
                 isTyping={isTyping}
                 isFeching={isFeching}
+                isLoading={isLoading}
                 onReachEndOfMessagesList={onReachEndOfMessagesList}
                 onMessageTextInputChange={onMessageTextInputChange}
                 onSendMessage={onSendMessage}

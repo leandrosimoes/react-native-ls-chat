@@ -4,15 +4,20 @@ import { ThemeContext } from '../../../theme'
 
 import styles from './styles'
 
-const EmptyMessages: React.FC = () => {
+interface IEmptyProps {
+    isLoading: boolean
+}
+
+const EmptyMessages: React.FC<IEmptyProps> = ({ isLoading }) => {
     const theme = React.useContext(ThemeContext)
 
     const themedStyles = styles({ theme })
 
     return (
         <View style={themedStyles.container}>
-            <Text style={themedStyles.noMessagesText}>Awesome!</Text>
-            <Text style={themedStyles.noMessagesText}>Be the first to leave a message!</Text>
+            {!isLoading && <Text style={themedStyles.noMessagesText}>Awesome!</Text>}
+            {!isLoading && <Text style={themedStyles.noMessagesText}>Be the first to leave a message!</Text>}
+            {isLoading && <Text style={themedStyles.noMessagesText}>Loading</Text>}
         </View>
     )
 }

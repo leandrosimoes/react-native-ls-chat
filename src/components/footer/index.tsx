@@ -18,6 +18,7 @@ import styles from './styles'
 interface IFooterProps {
     user: ILsChatUser
     replyingMessage?: ILsChatMessage
+    isLoading: boolean
     onMessageTextInputChange?: { (text: string): void }
     onCancelReplyingMessage: { (): void }
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
@@ -28,6 +29,7 @@ interface IFooterProps {
 const Footer: React.FC<IFooterProps> = ({
     user,
     replyingMessage,
+    isLoading,
     onMessageTextInputChange,
     onCancelReplyingMessage,
     onSendMessage,
@@ -95,8 +97,9 @@ const Footer: React.FC<IFooterProps> = ({
                     multiline
                     value={message}
                     onChange={onMessageInputChangeInternal}
+                    editable={!isLoading}
                 />
-                <TouchableWithoutFeedback onPress={onSendButtonPress}>
+                <TouchableWithoutFeedback onPress={onSendButtonPress} disabled={isLoading}>
                     <View style={themedStyle.sendButton}>
                         <Icon
                             path={ICONS.send}

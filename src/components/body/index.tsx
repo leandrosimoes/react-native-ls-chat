@@ -17,7 +17,8 @@ interface IBodyProps {
     messageSelectionEnabled: boolean
     isTyping: boolean
     isFeching: boolean
-    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number; }): void }
+    isLoading: boolean
+    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number }): void }
     onReplyControlPress: { (replyingMessage: ILsChatMessage): void }
     onDeleteMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessDeleteMessage: { (message: ILsChatMessage): void }
@@ -35,6 +36,7 @@ const Body: React.FC<IBodyProps> = ({
     messageSelectionEnabled,
     isTyping,
     isFeching,
+    isLoading,
     onReachEndOfMessagesList,
     onReplyControlPress,
     onDeleteMessage,
@@ -81,8 +83,6 @@ const Body: React.FC<IBodyProps> = ({
         setSelectedMessage(undefined)
     }
 
-    if (!messages || messages.length === 0) return <EmptyMessages />
-
     const formatedMessages: TLsChatMessageDesign[] = messages.map((message) => {
         const { time, user: messageUser } = message
 
@@ -101,20 +101,22 @@ const Body: React.FC<IBodyProps> = ({
 
     return (
         <View style={themedStyles.container}>
-            <Controls
+            {!isLoading && <Controls
                 message={selectedMessage}
                 loggedUser={user}
                 onPressControlBody={onPressControlBody}
                 onDeleteControlButtonPress={onDeleteControlButtonPress}
                 onReplyControlButtonPress={onReplyControlButtonPress}
-            />
+            />}
             <FlatList
                 ref={messagesListRef}
                 data={formatedMessages.reverse()}
-                inverted
+                inverted={messages.length > 0}
+                scrollEnabled={!isLoading}
                 keyExtractor={(_, index) => index.toString()}
-                ListFooterComponent={<LoadingIndicator isFeching={isFeching} />}
+                ListFooterComponent={<LoadingIndicator isFeching={isFeching || isLoading} />}
                 ListHeaderComponent={<TypingIndicator isTyping={isTyping} />}
+                ListEmptyComponent={<EmptyMessages isLoading={isLoading} />}
                 onEndReached={onReachEndOfMessagesList}
                 onEndReachedThreshold={0.2}
                 renderItem={({ item }) => {

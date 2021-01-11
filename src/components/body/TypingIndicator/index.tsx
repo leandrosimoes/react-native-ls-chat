@@ -8,9 +8,7 @@ interface ITypingIndicatorProps {
     isTyping: boolean
 }
 
-const TypingIndicator: React.FC<ITypingIndicatorProps> = ({
-    isTyping,
-}) => {
+const TypingIndicator: React.FC<ITypingIndicatorProps> = ({ isTyping }) => {
     const theme = React.useContext(ThemeContext)
     const themedStyles = styles({ theme })
     const animatedOpacity = React.useRef(new Animated.Value(0)).current
@@ -59,7 +57,7 @@ const TypingIndicator: React.FC<ITypingIndicatorProps> = ({
             Animated.timing(animatedScaleDot3, {
                 toValue: 1,
                 ...basicOptions,
-            })
+            }),
         ])
     )
 
