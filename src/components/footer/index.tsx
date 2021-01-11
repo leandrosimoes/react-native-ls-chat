@@ -1,5 +1,11 @@
 import * as React from 'react'
-import { TextInput, TouchableWithoutFeedback, View } from 'react-native'
+import {
+    NativeSyntheticEvent,
+    TextInput,
+    TextInputChangeEventData,
+    TouchableWithoutFeedback,
+    View,
+} from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../theme'
 import { guid } from '../../utils'
@@ -12,6 +18,7 @@ import styles from './styles'
 interface IFooterProps {
     user: ILsChatUser
     replyingMessage?: ILsChatMessage
+    onMessageTextInputChange?: { (text: string): void }
     onCancelReplyingMessage: { (): void }
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessSendMessage: { (message: ILsChatMessage): void }
@@ -21,6 +28,7 @@ interface IFooterProps {
 const Footer: React.FC<IFooterProps> = ({
     user,
     replyingMessage,
+    onMessageTextInputChange,
     onCancelReplyingMessage,
     onSendMessage,
     onSuccessSendMessage,
@@ -63,6 +71,14 @@ const Footer: React.FC<IFooterProps> = ({
         }
     }
 
+    const onMessageInputChangeInternal = ({
+        nativeEvent,
+    }: NativeSyntheticEvent<TextInputChangeEventData>) => {
+        if (onMessageTextInputChange) onMessageTextInputChange(nativeEvent.text)
+
+        setMessage(nativeEvent.text)
+    }
+
     return (
         <View style={themedStyle.container}>
             <ReplyingMessage
@@ -78,7 +94,7 @@ const Footer: React.FC<IFooterProps> = ({
                     placeholderTextColor={COMMON_COLORS.GREY}
                     multiline
                     value={message}
-                    onChange={({ nativeEvent }) => setMessage(nativeEvent.text)}
+                    onChange={onMessageInputChangeInternal}
                 />
                 <TouchableWithoutFeedback onPress={onSendButtonPress}>
                     <View style={themedStyle.sendButton}>

@@ -8,11 +8,16 @@ import EmptyMessages from './EmptyMessages'
 
 import styles from './styles'
 import Controls from './Controls'
+import TypingIndicator from './TypingIndicator'
+import LoadingIndicator from './LoadingIndicator'
 
 interface IBodyProps {
     user: ILsChatUser
     messages: ILsChatMessage[]
     messageSelectionEnabled: boolean
+    isTyping: boolean
+    isFeching: boolean
+    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number; }): void }
     onReplyControlPress: { (replyingMessage: ILsChatMessage): void }
     onDeleteMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessDeleteMessage: { (message: ILsChatMessage): void }
@@ -28,6 +33,9 @@ const Body: React.FC<IBodyProps> = ({
     messages,
     user,
     messageSelectionEnabled,
+    isTyping,
+    isFeching,
+    onReachEndOfMessagesList,
     onReplyControlPress,
     onDeleteMessage,
     onSuccessDeleteMessage,
@@ -82,7 +90,8 @@ const Body: React.FC<IBodyProps> = ({
         const showDateOnTop =
             !lastDate || lastDate.toDateString() !== messageDate.toDateString()
 
-        const showArrow = !lastUser || lastUser !== messageUser.id || !!message.replyingTo
+        const showArrow =
+            !lastUser || lastUser !== messageUser.id || !!message.replyingTo
 
         lastDate = new Date(time)
         lastUser = messageUser.id
@@ -104,6 +113,10 @@ const Body: React.FC<IBodyProps> = ({
                 data={formatedMessages.reverse()}
                 inverted
                 keyExtractor={(_, index) => index.toString()}
+                ListFooterComponent={<LoadingIndicator isFeching={isFeching} />}
+                ListHeaderComponent={<TypingIndicator isTyping={isTyping} />}
+                onEndReached={onReachEndOfMessagesList}
+                onEndReachedThreshold={0.2}
                 renderItem={({ item }) => {
                     if (user.id === item.user.id) {
                         return (

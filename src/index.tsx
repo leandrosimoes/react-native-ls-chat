@@ -17,6 +17,10 @@ export interface IChatProps {
     headerProps?: IHeaderProps
     messages?: ILsChatMessage[]
     messageSelectionEnabled?: boolean
+    isTyping?: boolean
+    isFeching?: boolean
+    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number; }): void }
+    onMessageTextInputChange: { (text: string): void }
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessSendMessage: { (message: ILsChatMessage): void }
     onErrorSendMessage: { (error: any): void }
@@ -32,6 +36,10 @@ const ContentWrapper: React.FC<IChatProps> = ({
     headerProps,
     messages = [],
     messageSelectionEnabled = true,
+    isTyping = false,
+    isFeching = false,
+    onReachEndOfMessagesList,
+    onMessageTextInputChange,
     onSendMessage,
     onSuccessSendMessage,
     onErrorSendMessage,
@@ -57,6 +65,9 @@ const ContentWrapper: React.FC<IChatProps> = ({
                 user={user}
                 messages={messages}
                 messageSelectionEnabled={messageSelectionEnabled}
+                isTyping={isTyping}
+                isFeching={isFeching}
+                onReachEndOfMessagesList={onReachEndOfMessagesList}
                 onReplyControlPress={onReplyControlPress}
                 onDeleteMessage={onDeleteMessage}
                 onSuccessDeleteMessage={onSuccessDeleteMessage}
@@ -65,6 +76,7 @@ const ContentWrapper: React.FC<IChatProps> = ({
             <Footer
                 user={user}
                 replyingMessage={replyingMessage}
+                onMessageTextInputChange={onMessageTextInputChange}
                 onCancelReplyingMessage={() => setReplyingMessage(undefined)}
                 onSendMessage={onSendMessage}
                 onSuccessSendMessage={onSuccessSendMessage}
@@ -83,6 +95,10 @@ const LsChat: React.FC<IChatProps> = ({
     },
     messages = [],
     messageSelectionEnabled = true,
+    isTyping = false,
+    isFeching = false,
+    onReachEndOfMessagesList,
+    onMessageTextInputChange,
     onSendMessage,
     onSuccessSendMessage,
     onErrorSendMessage,
@@ -102,6 +118,10 @@ const LsChat: React.FC<IChatProps> = ({
                 headerProps={headerProps}
                 messages={messages}
                 messageSelectionEnabled={messageSelectionEnabled}
+                isTyping={isTyping}
+                isFeching={isFeching}
+                onReachEndOfMessagesList={onReachEndOfMessagesList}
+                onMessageTextInputChange={onMessageTextInputChange}
                 onSendMessage={onSendMessage}
                 onSuccessSendMessage={onSuccessSendMessage}
                 onErrorSendMessage={onErrorSendMessage}
