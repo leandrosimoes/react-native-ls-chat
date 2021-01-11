@@ -3,7 +3,7 @@ import { FlatList, View } from 'react-native'
 
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { ThemeContext } from '../../theme'
-import Message from './Message'
+import { MessageFromUser, MessageFromAnotherUser } from './Message'
 import EmptyMessages from './EmptyMessages'
 
 import styles from './styles'
@@ -21,7 +21,7 @@ interface IBodyProps {
 
 type TLsChatMessageDesign = ILsChatMessage & {
     showDateOnTop: boolean
-    showUser: boolean
+    showArrow: boolean
 }
 
 const Body: React.FC<IBodyProps> = ({
@@ -62,7 +62,7 @@ const Body: React.FC<IBodyProps> = ({
     const onReplyControlButtonPress = () => {
         if (!selectedMessage || !selectedMessage.id) return
 
-        selectedMessage.text = `${selectedMessage.text.substr(0, 100)}...`
+        selectedMessage.text = `${selectedMessage.text.substr(0, 60)}...`
 
         onReplyControlPress(selectedMessage)
 
@@ -82,12 +82,12 @@ const Body: React.FC<IBodyProps> = ({
         const showDateOnTop =
             !lastDate || lastDate.toDateString() !== messageDate.toDateString()
 
-        const showUser = !lastUser || lastUser !== messageUser.id
+        const showArrow = !lastUser || lastUser !== messageUser.id || !!message.replyingTo
 
         lastDate = new Date(time)
         lastUser = messageUser.id
 
-        return { ...message, showDateOnTop, showUser }
+        return { ...message, showDateOnTop, showArrow }
     })
 
     return (
@@ -105,12 +105,25 @@ const Body: React.FC<IBodyProps> = ({
                 inverted
                 keyExtractor={(_, index) => index.toString()}
                 renderItem={({ item }) => {
+                    if (user.id === item.user.id) {
+                        return (
+                            <MessageFromUser
+                                user={user}
+                                message={item}
+                                showDateOnTop={item.showDateOnTop}
+                                showArrow={item.showArrow}
+                                onMessageItemLongPress={onMessageItemLongPress}
+                                isSelected={selectedMessage?.id === item.id}
+                            />
+                        )
+                    }
+
                     return (
-                        <Message
-                            loggedUser={user}
+                        <MessageFromAnotherUser
+                            user={user}
                             message={item}
                             showDateOnTop={item.showDateOnTop}
-                            showUser={item.showUser}
+                            showArrow={item.showArrow}
                             onMessageItemLongPress={onMessageItemLongPress}
                             isSelected={selectedMessage?.id === item.id}
                         />

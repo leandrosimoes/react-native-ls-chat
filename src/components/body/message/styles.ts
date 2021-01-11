@@ -34,7 +34,7 @@ const styles = (props: IThemedComponentProps) =>
             shadowOpacity: 0.2,
             shadowRadius: 2,
             zIndex: 3,
-            position: 'relative'
+            position: 'relative',
         },
         messageFromUser: {
             alignItems: 'flex-end',
@@ -108,8 +108,8 @@ const styles = (props: IThemedComponentProps) =>
             transform: [
                 {
                     rotate: '45deg',
-                }
-            ]
+                },
+            ],
         },
         messageArrowRight: {
             borderBottomColor: props.theme?.USER_MESSAGE_BG_COLOR,
@@ -117,17 +117,46 @@ const styles = (props: IThemedComponentProps) =>
             transform: [
                 {
                     rotate: '-45deg',
-                }
-            ]
+                },
+            ],
         },
         messageArrowShadow: {
             borderBottomColor: COMMON_COLORS.BLACK,
-            opacity: .1,
-            top: 1,            
+            opacity: 0.1,
+            top: 1,
             zIndex: 1,
         },
         messageSelected: {
             backgroundColor: props.theme?.MESSAGE_SELECTED_BG_COLOR,
+        },
+        replyingWrapper: {
+            flex: 1,
+            backgroundColor: props.theme?.MESSAGE_REPLY_BG_COLOR,
+            marginTop: 15,
+            paddingTop: 0,
+            paddingHorizontal: 25,
+            paddingBottom: 15,
+            borderRadius: 5,
+        },
+        replyingMessage: {
+            opacity: .7,
+            borderTopLeftRadius: 5,
+            borderTopRightRadius: 5,
+            position: 'relative',
+            transform: [
+                {
+                    scale: 0.9
+                }
+            ],
+            top: 25,
+        },
+        replyingText: {
+            color: props.theme?.DEFAULT_COLOR,
+            fontSize: 10,
+            position: 'absolute',
+            top: 15,
+            left: 30,
+            opacity: 0.9,
         }
     })
 
