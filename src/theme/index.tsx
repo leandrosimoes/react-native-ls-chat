@@ -8,6 +8,7 @@ export const COMMON_COLORS = {
     VERY_LIGHT_GREY: '#eff8ff',
     VERY_LIGHT_BLUE: '#b1e8ed',
     BLUE: '#2470a0',
+    ORANGE: '#ffc045',
 }
 
 export const DARK_COLORS = {
@@ -16,7 +17,6 @@ export const DARK_COLORS = {
     RED: '#ff6768',
     YELLOW: '#ffe05d',
     GREEN: '#4ecca3',
-    ORANGE: '#ffc045',
     ...COMMON_COLORS
 }
 
@@ -26,7 +26,6 @@ export const LIGHT_COLORS = {
     RED: '#ec524b',
     YELLOW: '#ffd700',
     GREEN: '#61b15a',
-    ORANGE: '#f39233',
     ...COMMON_COLORS
 }
 
