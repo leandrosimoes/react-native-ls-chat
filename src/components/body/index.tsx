@@ -1,5 +1,10 @@
 import * as React from 'react'
-import { FlatList, View } from 'react-native'
+import {
+    FlatList,
+    NativeScrollEvent,
+    NativeSyntheticEvent,
+    View,
+} from 'react-native'
 
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { ThemeContext } from '../../theme'
@@ -10,6 +15,7 @@ import styles from './styles'
 import Controls from './Controls'
 import TypingIndicator from './TypingIndicator'
 import LoadingIndicator from './LoadingIndicator'
+import ScrollToBottomButton from './ScrollToBottomButton'
 
 interface IBodyProps {
     user: ILsChatUser
@@ -49,6 +55,10 @@ const Body: React.FC<IBodyProps> = ({
     const [selectedMessage, setSelectedMessage] = React.useState<
         ILsChatMessage | undefined
     >()
+    const [
+        showScrollToBottonButton,
+        setShowScrollToBottonButton,
+    ] = React.useState(false)
 
     let lastDate = React.useRef<Date | undefined>().current
     let lastUser = React.useRef<number>(0).current
@@ -83,6 +93,19 @@ const Body: React.FC<IBodyProps> = ({
         setSelectedMessage(undefined)
     }
 
+    const onMessageListScroll = (
+        event: NativeSyntheticEvent<NativeScrollEvent>
+    ) => {
+        setShowScrollToBottonButton(event.nativeEvent.contentOffset.y > 500)
+    }
+
+    const onScrollToBottomPress = () => {
+        messagesListRef.current?.scrollToOffset({
+            animated: true,
+            offset: 0,
+        })
+    }
+
     const formatedMessages: TLsChatMessageDesign[] = messages.map((message) => {
         const { time, user: messageUser } = message
 
@@ -101,24 +124,29 @@ const Body: React.FC<IBodyProps> = ({
 
     return (
         <View style={themedStyles.container}>
-            {!isLoading && <Controls
-                message={selectedMessage}
-                loggedUser={user}
-                onPressControlBody={onPressControlBody}
-                onDeleteControlButtonPress={onDeleteControlButtonPress}
-                onReplyControlButtonPress={onReplyControlButtonPress}
-            />}
+            {!isLoading && (
+                <Controls
+                    message={selectedMessage}
+                    loggedUser={user}
+                    onPressControlBody={onPressControlBody}
+                    onDeleteControlButtonPress={onDeleteControlButtonPress}
+                    onReplyControlButtonPress={onReplyControlButtonPress}
+                />
+            )}
             <FlatList
                 ref={messagesListRef}
                 data={formatedMessages.reverse()}
                 inverted={messages.length > 0}
                 scrollEnabled={!isLoading}
                 keyExtractor={(_, index) => index.toString()}
-                ListFooterComponent={<LoadingIndicator isFeching={isFeching || isLoading} />}
+                ListFooterComponent={
+                    <LoadingIndicator isFeching={isFeching || isLoading} />
+                }
                 ListHeaderComponent={<TypingIndicator isTyping={isTyping} />}
                 ListEmptyComponent={<EmptyMessages isLoading={isLoading} />}
                 onEndReached={onReachEndOfMessagesList}
                 onEndReachedThreshold={0.2}
+                onScroll={onMessageListScroll}
                 renderItem={({ item }) => {
                     if (user.id === item.user.id) {
                         return (
@@ -144,6 +172,10 @@ const Body: React.FC<IBodyProps> = ({
                         />
                     )
                 }}
+            />
+            <ScrollToBottomButton
+                isVisible={showScrollToBottonButton}
+                onPress={onScrollToBottomPress}
             />
         </View>
     )
