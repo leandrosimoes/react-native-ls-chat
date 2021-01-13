@@ -55,8 +55,6 @@ const ContentWrapper: React.FC<IChatProps> = ({
     >()
 
     const onReplyControlPress = (message: ILsChatMessage) => {
-        console.log(message)
-
         setReplyingMessage(message)
     }
 

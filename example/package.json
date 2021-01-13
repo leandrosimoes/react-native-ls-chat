@@ -11,6 +11,7 @@
     "upgrade:package": "yarn upgrade react-native-ls-chat"
   },
   "dependencies": {
+    "faker": "^5.1.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
     "react-native-ls-chat": "../lib",
