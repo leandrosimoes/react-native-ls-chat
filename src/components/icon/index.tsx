@@ -32,12 +32,12 @@ const Icon: React.FC<IIconProps> = ({
     style = {},
     size = EIconSize.NORMAL,
 }) => {
-    if (!path || path.length === 0) return null
+    if (path.length === 0) return null
 
     const theme = React.useContext(ThemeContext)
 
     return (
-        <Svg width={width} height={height} style={[{ transform: [{ scale: size }] }, style]}>
+        <Svg width={width} height={height} style={[{ transform: [{ scale: size }] }, style]} accessibilityLabel='Icon'>
             {path.map((p, i) => (
                 <Path key={i} d={p} fill={fill || theme.DEFAULT_COLOR} stroke={stroke || theme.DEFAULT_COLOR} />
             ))}

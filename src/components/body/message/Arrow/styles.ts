@@ -14,7 +14,7 @@ const styles = (props: IThemedComponentProps) =>
             borderLeftColor: 'transparent',
             borderRightColor: 'transparent',
             position: 'absolute',
-            top: -2,
+            top: -1.6,
             zIndex: 2,
         },
         messageArrowLeft: {
@@ -28,7 +28,7 @@ const styles = (props: IThemedComponentProps) =>
         },
         messageArrowRight: {
             borderBottomColor: props.theme?.USER_MESSAGE_BG_COLOR,
-            right: -16,
+            right: -16.2,
             transform: [
                 {
                     rotate: '-45deg',

@@ -18,7 +18,7 @@ const style = (props: IThemedComponentProps) => StyleSheet.create({
         overflow: 'hidden',
         textAlign: 'center',
     },
-    userPhoto: {
+    image: {
         width: 40,
         height: 40,
         borderRadius: 40,

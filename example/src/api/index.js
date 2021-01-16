@@ -4,11 +4,24 @@ import { asyncForEach } from '../utils'
 let START_DATE = new Date(2021, 0, 1)
 let END_DATE = new Date()
 
+const generateAvatar = () => {
+    const isWoman = random.boolean()
+    const gender = isWoman ? 'women' : 'men'
+    const num = random.number({ min: 1, max: 99 })
+    return `https://randomuser.me/api/portraits/${gender}/${num}.jpg?v=${new Date().getTime()}`
+}
+
 export class User {
     constructor(_name, _photo) {
+        const avatar = generateAvatar()
+        const gender = avatar.indexOf('women') > -1 ? 1 : 0
+
         this.id = random.uuid()
-        this.name = _name || name.findName()
-        this.photo = _photo || internet.avatar()
+        this.name = _name || name.findName('', '', gender)
+
+        console.log(avatar, this.name)
+
+        this.photo = _photo || generateAvatar()
     }
 }
 

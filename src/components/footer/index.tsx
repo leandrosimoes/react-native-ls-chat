@@ -61,10 +61,10 @@ const Footer: React.FC<IFooterProps> = ({
         inputRef?.current?.blur()
 
         try {
-            const messageSend = await onSendMessage(messageToSend)
+            const finalMessage = await onSendMessage(messageToSend)
 
-            if (messageSend) {
-                onSuccessSendMessage(messageSend)
+            if (finalMessage) {
+                onSuccessSendMessage(finalMessage)
             } else {
                 onErrorSendMessage(messageToSend, 'Unknown Error')
             }
@@ -82,7 +82,7 @@ const Footer: React.FC<IFooterProps> = ({
     }
 
     return (
-        <View style={themedStyle.container}>
+        <View style={themedStyle.container} accessibilityLabel='Chat footer'>
             <ReplyingMessage
                 user={user}
                 message={replyingMessage}
@@ -98,8 +98,13 @@ const Footer: React.FC<IFooterProps> = ({
                     value={message}
                     onChange={onMessageInputChangeInternal}
                     editable={!isLoading}
+                    accessibilityLabel='Chat message input'
                 />
-                <TouchableWithoutFeedback onPress={onSendButtonPress} disabled={isLoading}>
+                <TouchableWithoutFeedback
+                    onPress={onSendButtonPress}
+                    disabled={isLoading}
+                    accessibilityLabel='Send chat message button'
+                    accessibilityRole='button'>
                     <View style={themedStyle.sendButton}>
                         <Icon
                             path={ICONS.send}

@@ -93,7 +93,7 @@ const LsChat: React.FC<IChatProps> = ({
     theme = ETheme.DARK,
     headerProps = {
         isVisible: true,
-        title: '',
+        title: ''
     },
     messages = [],
     messageSelectionEnabled = true,

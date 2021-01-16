@@ -23,7 +23,11 @@ const CloseButton: React.FC<IHeaderProps> = ({ onCloseButtonPress }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-                <Icon path={ICONS.timesCircle} fill={theme.CLOSE_ICON_FG_COLOR} stroke={theme.CLOSE_ICON_FG_COLOR} />
+                <Icon
+                    path={ICONS.timesCircle}
+                    fill={theme.CLOSE_ICON_FG_COLOR}
+                    stroke={theme.CLOSE_ICON_FG_COLOR}
+                />
             </View>
         </TouchableWithoutFeedback>
     )

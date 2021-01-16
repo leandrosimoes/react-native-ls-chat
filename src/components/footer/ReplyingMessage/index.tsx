@@ -57,7 +57,9 @@ const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
     const ifFromUser = user.id === message?.user.id
 
     return (
-        <Animated.View style={[themedStyles.container, { top: animatedTop }]}>
+        <Animated.View
+            style={[themedStyles.container, { top: animatedTop }]}
+            accessibilityLabel='Chat replying message representation'>
             <View
                 style={[
                     themedStyles.message,
@@ -70,15 +72,23 @@ const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
                         <Image
                             style={themedStyles.messageUserPhoto}
                             source={{ uri: message.user.photo }}
+                            accessibilityLabel='Replying Message User Photo'
+                            accessibilityRole='image'
                         />
                     )}
-                    <Text style={themedStyles.messageUserName}>
+                    <Text
+                        style={themedStyles.messageUserName}
+                        accessibilityRole='text'
+                        accessibilityLabel='Replying Message User Name'>
                         {message.user.name}
                     </Text>
                 </View>
                 <Text style={themedStyles.messageText}>{message.text}</Text>
             </View>
-            <TouchableWithoutFeedback onPress={onCancelReplyingMessageInternal}>
+            <TouchableWithoutFeedback
+                onPress={onCancelReplyingMessageInternal}
+                accessibilityRole='button'
+                accessibilityLabel='Cancel Message Reply Button'>
                 <View style={themedStyles.closeButton}>
                     <Icon
                         path={ICONS.timesCircle}

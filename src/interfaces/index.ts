@@ -1,4 +1,4 @@
-import { GestureResponderEvent } from 'react-native'
+import { GestureResponderEvent, ImageSourcePropType } from 'react-native'
 
 export interface ILsChatUser {
     id: number
@@ -19,5 +19,6 @@ export interface ILsChatMessage {
 export interface IHeaderProps {
     isVisible?: boolean
     title?: string
+    imageSource?: ImageSourcePropType
     onCloseButtonPress?: { (event: GestureResponderEvent): void }
 }
