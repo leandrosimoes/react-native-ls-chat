@@ -14,7 +14,7 @@ import styles from './styles'
 
 interface IControlsProps {
     message: ILsChatMessage | undefined
-    loggedUser: ILsChatUser
+    user: ILsChatUser
     onPressControlBody: { (event: GestureResponderEvent): void }
     onDeleteControlButtonPress: { (event: GestureResponderEvent): void }
     onReplyControlButtonPress: { (event: GestureResponderEvent): void }
@@ -22,7 +22,7 @@ interface IControlsProps {
 
 const Controls: React.FC<IControlsProps> = ({
     message,
-    loggedUser,
+    user,
     onPressControlBody,
     onReplyControlButtonPress,
     onDeleteControlButtonPress,
@@ -35,14 +35,14 @@ const Controls: React.FC<IControlsProps> = ({
         toValue: -60,
         duration: 300,
         useNativeDriver: false,
-        easing: Easing.out(Easing.elastic(1))
+        easing: Easing.out(Easing.elastic(1)),
     })
 
     const slideDownAnimation = Animated.timing(animatedTop, {
         toValue: -10,
         duration: 300,
         useNativeDriver: false,
-        easing: Easing.in(Easing.elastic(1))
+        easing: Easing.in(Easing.elastic(1)),
     })
 
     const onPressControlBodyInternal = (event: GestureResponderEvent) => {
@@ -56,14 +56,24 @@ const Controls: React.FC<IControlsProps> = ({
     slideDownAnimation.start()
 
     const { isDelivered, isRead } = message
-    const isUserMessage = message.user.id === loggedUser.id
+    const isUserMessage = message.user.id === user.id
 
     return (
-        <TouchableWithoutFeedback onPress={onPressControlBodyInternal}>
+        <TouchableWithoutFeedback
+            onPress={onPressControlBodyInternal}
+            accessibilityLabel='Selected Message Action Controls'
+            accessibilityRole='button'>
             <View style={themedStyles.container}>
-                <Animated.View style={[themedStyles.controlsWrapper, { top: animatedTop }]}>
+                <Animated.View
+                    style={[
+                        themedStyles.controlsWrapper,
+                        { top: animatedTop },
+                    ]}>
                     {(isDelivered || isRead) && (
-                        <TouchableWithoutFeedback onPress={onReplyControlButtonPress}>
+                        <TouchableWithoutFeedback
+                            onPress={onReplyControlButtonPress}
+                            accessibilityRole='button'
+                            accessibilityLabel='Reply Message Control Button'>
                             <View
                                 style={[
                                     themedStyles.controlButton,
@@ -79,7 +89,9 @@ const Controls: React.FC<IControlsProps> = ({
                     )}
                     {isUserMessage && (
                         <TouchableWithoutFeedback
-                            onPress={onDeleteControlButtonPress}>
+                            onPress={onDeleteControlButtonPress}
+                            accessibilityRole='button'
+                            accessibilityLabel='Delete Message Control Button'>
                             <View style={themedStyles.controlButton}>
                                 <Icon
                                     path={icons.trash}

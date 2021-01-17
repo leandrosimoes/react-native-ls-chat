@@ -127,7 +127,7 @@ const Body: React.FC<IBodyProps> = ({
             {!isLoading && (
                 <Controls
                     message={selectedMessage}
-                    loggedUser={user}
+                    user={user}
                     onPressControlBody={onPressControlBody}
                     onDeleteControlButtonPress={onDeleteControlButtonPress}
                     onReplyControlButtonPress={onReplyControlButtonPress}

@@ -74,7 +74,7 @@ const LoadingIndicator: React.FC<ILoadingIndicatorProps> = ({ isFeching }) => {
     }, [isFeching])
 
     return (
-        <View style={themedStyles.container}>
+        <View style={themedStyles.container} accessibilityLabel='Fetching Messages Indicator'>
             <Animated.View
                 style={[
                     themedStyles.dot,
