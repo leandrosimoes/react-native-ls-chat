@@ -74,7 +74,7 @@ const TypingIndicator: React.FC<ITypingIndicatorProps> = ({ isTyping }) => {
     }, [isTyping])
 
     return (
-        <View style={themedStyles.container}>
+        <View style={themedStyles.container} accessibilityLabel='Typing Indicator'>
             <Animated.View
                 style={[
                     themedStyles.dot,

@@ -13,12 +13,15 @@ interface IScrollToBottomButtonProps {
 
 const ScrollToBottomButton: React.FC<IScrollToBottomButtonProps> = ({
     isVisible,
-    onPress
+    onPress,
 }) => {
     if (!isVisible) return null
 
     return (
-        <TouchableWithoutFeedback onPress={onPress}>
+        <TouchableWithoutFeedback
+            onPress={onPress}
+            accessibilityLabel='Button to scroll the list of messsages back to bottom'
+            accessibilityRole='button'>
             <View style={styles.container}>
                 <Icon
                     path={ICONS.chevronDownCircle}
