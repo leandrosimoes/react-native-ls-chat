@@ -16,29 +16,26 @@ const Arrow: React.FC<IArrowProps> = ({ position, isSelected }) => {
 
     return (
         <>
-        <View
-            style={[
-                themedStyles.messageArrow,
-                position === 'right'
-                    ? themedStyles.messageArrowRight
-                    : themedStyles.messageArrowLeft,
-                isSelected
-                    ? themedStyles.messageArrowSelected
-                    : {}
-            ]}
-        />
-        <View
-            style={[
-                themedStyles.messageArrow,
-                position === 'right'
-                    ? themedStyles.messageArrowRight
-                    : themedStyles.messageArrowLeft,
-                themedStyles.messageArrowShadow,
-                isSelected
-                    ? themedStyles.messageArrowSelected
-                    : {}
-            ]}
-        />
+            <View
+                accessibilityLabel='Message Arrow'
+                style={[
+                    themedStyles.messageArrow,
+                    position === 'right'
+                        ? themedStyles.messageArrowRight
+                        : themedStyles.messageArrowLeft,
+                    isSelected ? themedStyles.messageArrowSelected : {},
+                ]}
+            />
+            <View
+                style={[
+                    themedStyles.messageArrow,
+                    position === 'right'
+                        ? themedStyles.messageArrowRight
+                        : themedStyles.messageArrowLeft,
+                    themedStyles.messageArrowShadow,
+                    isSelected ? themedStyles.messageArrowSelected : {},
+                ]}
+            />
         </>
     )
 }

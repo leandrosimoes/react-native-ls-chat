@@ -3,7 +3,8 @@ import { fireEvent, render } from '@testing-library/react-native'
 
 import ScrollToBottomButton from '.'
 
-const ScrollToBottomButtonA11yLabel = 'Button to scroll the list of messsages back to bottom'
+const ScrollToBottomButtonA11yLabel =
+    'Button to scroll the list of messsages back to bottom'
 
 let onPress: () => void
 
@@ -17,7 +18,9 @@ describe('ScrollToBottomButton tests', () => {
             <ScrollToBottomButton isVisible={true} onPress={onPress} />
         )
 
-        const scrollToBottomButton = queryByA11yLabel(ScrollToBottomButtonA11yLabel)
+        const scrollToBottomButton = queryByA11yLabel(
+            ScrollToBottomButtonA11yLabel
+        )
 
         expect(scrollToBottomButton).not.toBeNull()
     })
@@ -27,7 +30,9 @@ describe('ScrollToBottomButton tests', () => {
             <ScrollToBottomButton isVisible={false} onPress={onPress} />
         )
 
-        const scrollToBottomButton = queryByA11yLabel(ScrollToBottomButtonA11yLabel)
+        const scrollToBottomButton = queryByA11yLabel(
+            ScrollToBottomButtonA11yLabel
+        )
 
         expect(scrollToBottomButton).toBeNull()
     })
@@ -37,7 +42,9 @@ describe('ScrollToBottomButton tests', () => {
             <ScrollToBottomButton isVisible={true} onPress={onPress} />
         )
 
-        const scrollToBottomButton = queryByA11yLabel(ScrollToBottomButtonA11yLabel)
+        const scrollToBottomButton = queryByA11yLabel(
+            ScrollToBottomButtonA11yLabel
+        )
 
         fireEvent(scrollToBottomButton, 'click')
 

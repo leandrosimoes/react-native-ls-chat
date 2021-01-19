@@ -224,7 +224,7 @@ describe('Footer tests', () => {
         const button = queryByA11yRole('button')
 
         fireEvent(input, 'change', { nativeEvent: { text: testMessageText } })
-        fireEvent(button, 'onPress') 
+        fireEvent(button, 'onPress')
 
         expect(onSendMessage).toBeCalledTimes(0)
 

@@ -1,11 +1,5 @@
 import * as React from 'react'
-import {
-    Animated,
-    Image,
-    Text,
-    TouchableWithoutFeedback,
-    View,
-} from 'react-native'
+import { Animated, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 import Icon, { EIconSize } from '../../Icon'
@@ -43,7 +37,7 @@ interface IReplyProps {
 
 type TReplyProps = React.PropsWithChildren<IReplyProps>
 
-const ReplyWrapper: React.FC<TReplyProps> = ({ children, message, user }) => {
+export const ReplyWrapper: React.FC<TReplyProps> = ({ children, message, user }) => {
     const theme = React.useContext(ThemeContext)
     const themedStyles = styles({ theme })
 
@@ -58,14 +52,12 @@ const ReplyWrapper: React.FC<TReplyProps> = ({ children, message, user }) => {
 
     const messageStyle = [
         themedStyles.message,
-        isFromUser
-            ? themedStyles.messageFromUser
-            : themedStyles.messageFromAnotherUser,
+        isFromUser ? themedStyles.messageFromUser : themedStyles.messageFromAnotherUser,
         themedStyles.replyingMessage,
     ]
 
     return (
-        <View style={themedStyles.replyingWrapper}>
+        <View style={themedStyles.replyingWrapper} accessibilityLabel='Replying Message Wrapper'>
             <Text style={themedStyles.replyingText}>Replying to:</Text>
             <View style={messageStyle}>
                 <View style={themedStyles.messageUserWrapper}>
@@ -73,9 +65,14 @@ const ReplyWrapper: React.FC<TReplyProps> = ({ children, message, user }) => {
                         <Image
                             style={themedStyles.messageUserPhoto}
                             source={{ uri: replyingUser.photo }}
+                            accessibilityLabel='Replying Message User Photo'
+                            accessibilityRole='image'
                         />
                     )}
-                    <Text style={themedStyles.messageUserName}>
+                    <Text
+                        style={themedStyles.messageUserName}
+                        accessibilityLabel='Replying Message User Name'
+                        accessibilityRole='text'>
                         {replyingUser.name}
                     </Text>
                 </View>
@@ -111,10 +108,7 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
     const [isLoading, setIsLoading] = React.useState(true)
 
     const { time, text, isDelivered, isRead } = message
-    const wrapperStyle = [
-        themedStyles.messageWrapper,
-        themedStyles.messageWrapperFromUser,
-    ]
+    const wrapperStyle = [themedStyles.messageWrapper, themedStyles.messageWrapperFromUser]
     const messageStyle = [
         themedStyles.message,
         themedStyles.messageFromUser,
@@ -140,19 +134,22 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
 
     return (
         <TouchableWithoutFeedback
-            onLongPress={() => onMessageItemLongPress(message)}>
+            onLongPress={() => onMessageItemLongPress(message)}
+            accessibilityLabel='Message Wrapper'
+            accessibilityHint='Ling press to select'
+            accessibilityRole='button'>
             <View style={wrapperStyle}>
                 {showDateOnTop && (
-                    <Text style={themedStyles.dateSeparator}>
+                    <Text
+                        style={themedStyles.dateSeparator}
+                        accessibilityLabel='Message Date'
+                        accessibilityRole='text'>
                         {messageDate.toDateString()}
                     </Text>
                 )}
                 <ReplyWrapper message={message} user={user}>
                     <Animated.View
-                        style={[
-                            messageStyle,
-                            { opacity: isLoading ? animatedOpacity : 1 },
-                        ]}>
+                        style={[messageStyle, { opacity: isLoading ? animatedOpacity : 1 }]}>
                         {(showDateOnTop || showArrow) && (
                             <Arrow position='right' isSelected={isSelected} />
                         )}
@@ -223,10 +220,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
     const [isLoading, setIsLoading] = React.useState(true)
 
     const { user: messageUser, time, text, isDelivered, isRead } = message
-    const wrapperStyle = [
-        themedStyles.messageWrapper,
-        themedStyles.messageWrapperFromAnotherUser,
-    ]
+    const wrapperStyle = [themedStyles.messageWrapper, themedStyles.messageWrapperFromAnotherUser]
     const messageStyle = [
         themedStyles.message,
         themedStyles.messageFromAnotherUser,
@@ -252,19 +246,22 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
 
     return (
         <TouchableWithoutFeedback
-            onLongPress={() => onMessageItemLongPress(message)}>
+            onLongPress={() => onMessageItemLongPress(message)}
+            accessibilityLabel='Message Wrapper'
+            accessibilityHint='Ling press to select'
+            accessibilityRole='button'>
             <View style={wrapperStyle}>
                 {showDateOnTop && (
-                    <Text style={themedStyles.dateSeparator}>
+                    <Text
+                        style={themedStyles.dateSeparator}
+                        accessibilityLabel='Message Date'
+                        accessibilityRole='text'>
                         {messageDate.toDateString()}
                     </Text>
                 )}
                 <ReplyWrapper message={message} user={user}>
                     <Animated.View
-                        style={[
-                            messageStyle,
-                            { opacity: isLoading ? animatedOpacity : 1 },
-                        ]}>
+                        style={[messageStyle, { opacity: isLoading ? animatedOpacity : 1 }]}>
                         {(showDateOnTop || showArrow) && (
                             <Arrow position='left' isSelected={isSelected} />
                         )}
@@ -273,14 +270,27 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                                 <Image
                                     style={themedStyles.messageUserPhoto}
                                     source={{ uri: message.user.photo }}
+                                    accessibilityLabel='Message User Photo'
+                                    accessibilityRole='image'
                                 />
                             )}
-                            <Text style={themedStyles.messageUserName}>
+                            <Text
+                                style={themedStyles.messageUserName}
+                                accessibilityLabel='Message User Name'
+                                accessibilityRole='text'>
                                 {messageUser.name}
                             </Text>
                         </View>
-                        <Text style={themedStyles.messageText}>{text}</Text>
-                        <Text style={themedStyles.messageDate}>
+                        <Text
+                            style={themedStyles.messageText}
+                            accessibilityLabel='Message Text'
+                            accessibilityRole='text'>
+                            {text}
+                        </Text>
+                        <Text
+                            style={themedStyles.messageDate}
+                            accessibilityLabel='Message Hour'
+                            accessibilityRole='text'>
                             {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
                         </Text>
                         {status === EStatusMessage.WAITING && (
@@ -332,7 +342,10 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
     )
 }
 
+/* eslint-disable @typescript-eslint/naming-convention */
 export default {
     MessageFromUser,
     MessageFromAnotherUser,
+    ReplyWrapper,
 }
+/* eslint-enable @typescript-eslint/naming-convention */

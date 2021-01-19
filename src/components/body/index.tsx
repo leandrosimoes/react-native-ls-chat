@@ -1,10 +1,5 @@
 import * as React from 'react'
-import {
-    FlatList,
-    NativeScrollEvent,
-    NativeSyntheticEvent,
-    View,
-} from 'react-native'
+import { FlatList, NativeScrollEvent, NativeSyntheticEvent, View } from 'react-native'
 
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { ThemeContext } from '../../theme'
@@ -52,13 +47,8 @@ const Body: React.FC<IBodyProps> = ({
     const theme = React.useContext(ThemeContext)
     const themedStyles = styles({ theme })
     const messagesListRef = React.useRef<FlatList<TLsChatMessageDesign>>(null)
-    const [selectedMessage, setSelectedMessage] = React.useState<
-        ILsChatMessage | undefined
-    >()
-    const [
-        showScrollToBottonButton,
-        setShowScrollToBottonButton,
-    ] = React.useState(false)
+    const [selectedMessage, setSelectedMessage] = React.useState<ILsChatMessage | undefined>()
+    const [showScrollToBottonButton, setShowScrollToBottonButton] = React.useState(false)
 
     let lastDate = React.useRef<Date | undefined>().current
     let lastUser = React.useRef<number>(0).current
@@ -93,13 +83,12 @@ const Body: React.FC<IBodyProps> = ({
         setSelectedMessage(undefined)
     }
 
-    const onMessageListScroll = (
-        event: NativeSyntheticEvent<NativeScrollEvent>
-    ) => {
+    const onMessageListScroll = (event: NativeSyntheticEvent<NativeScrollEvent>) => {
         setShowScrollToBottonButton(event.nativeEvent.contentOffset.y > 500)
     }
 
     const onScrollToBottomPress = () => {
+        // eslint-disable-next-line no-unused-expressions
         messagesListRef.current?.scrollToOffset({
             animated: true,
             offset: 0,
@@ -110,11 +99,9 @@ const Body: React.FC<IBodyProps> = ({
         const { time, user: messageUser } = message
 
         const messageDate = new Date(time)
-        const showDateOnTop =
-            !lastDate || lastDate.toDateString() !== messageDate.toDateString()
+        const showDateOnTop = !lastDate || lastDate.toDateString() !== messageDate.toDateString()
 
-        const showArrow =
-            !lastUser || lastUser !== messageUser.id || !!message.replyingTo
+        const showArrow = !lastUser || lastUser !== messageUser.id || !!message.replyingTo
 
         lastDate = new Date(time)
         lastUser = messageUser.id
@@ -139,9 +126,7 @@ const Body: React.FC<IBodyProps> = ({
                 inverted={messages.length > 0}
                 scrollEnabled={!isLoading}
                 keyExtractor={(_, index) => index.toString()}
-                ListFooterComponent={
-                    <LoadingIndicator isFeching={isFeching || isLoading} />
-                }
+                ListFooterComponent={<LoadingIndicator isFeching={isFeching || isLoading} />}
                 ListHeaderComponent={<TypingIndicator isTyping={isTyping} />}
                 ListEmptyComponent={<EmptyMessages isLoading={isLoading} />}
                 onEndReached={onReachEndOfMessagesList}

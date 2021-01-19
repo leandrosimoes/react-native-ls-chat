@@ -11,10 +11,7 @@ interface IScrollToBottomButtonProps {
     onPress: { (): void }
 }
 
-const ScrollToBottomButton: React.FC<IScrollToBottomButtonProps> = ({
-    isVisible,
-    onPress,
-}) => {
+const ScrollToBottomButton: React.FC<IScrollToBottomButtonProps> = ({ isVisible, onPress }) => {
     if (!isVisible) return null
 
     return (

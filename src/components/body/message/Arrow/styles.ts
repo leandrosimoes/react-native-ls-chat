@@ -23,8 +23,8 @@ const styles = (props: IThemedComponentProps) =>
             transform: [
                 {
                     rotate: '45deg',
-                }
-            ]
+                },
+            ],
         },
         messageArrowRight: {
             borderBottomColor: props.theme?.USER_MESSAGE_BG_COLOR,
@@ -32,18 +32,18 @@ const styles = (props: IThemedComponentProps) =>
             transform: [
                 {
                     rotate: '-45deg',
-                }
-            ]
+                },
+            ],
         },
         messageArrowShadow: {
             borderBottomColor: COMMON_COLORS.BLACK,
-            opacity: .1,
-            top: 1,            
+            opacity: 0.1,
+            top: 1,
             zIndex: 1,
         },
         messageArrowSelected: {
             borderBottomColor: props.theme?.MESSAGE_SELECTED_BG_COLOR,
-        }
+        },
     })
 
 export default styles

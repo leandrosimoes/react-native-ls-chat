@@ -53,13 +53,12 @@ describe('Header tests', () => {
     })
 
     it('Should Header image be rendered with imageSource as image if both, user "photo" and "imageSource" are provided', () => {
-        const mockImageSource = { uri: 'https://randomuser.me/api/portraits/women/66.jpg' }
+        const mockImageSource = {
+            uri: 'https://randomuser.me/api/portraits/women/66.jpg',
+        }
 
         const { queryByA11yRole } = render(
-            <Header
-                user={mockUser}
-                imageSource={mockImageSource}
-            />
+            <Header user={mockUser} imageSource={mockImageSource} />
         )
         const header = queryByA11yRole('header')
         const image = queryByA11yRole('image')

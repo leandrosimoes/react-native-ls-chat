@@ -16,16 +16,17 @@ const Header: React.FC<IHeaderWithUserProps> = ({
     imageSource,
     onCloseButtonPress,
 }) => {
+    const theme = React.useContext(ThemeContext)
+
     if (!isVisible) return null
 
-    const theme = React.useContext(ThemeContext)
     const themedStyle = styles({ theme })
 
     if (title.length > 30) {
-        title = title.substr(0, 30) + '...'
+        title = `${title.substr(0, 30)}...`
     }
 
-    let finalImageSource: ImageSourcePropType | undefined = undefined
+    let finalImageSource: ImageSourcePropType | undefined
 
     if (user && user.photo) {
         finalImageSource = { uri: user.photo, cache: 'reload' }

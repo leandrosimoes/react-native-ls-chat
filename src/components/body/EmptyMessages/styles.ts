@@ -11,7 +11,7 @@ const styles = (props: IThemedComponentProps) =>
         },
         noMessagesText: {
             color: props.theme?.DEFAULT_COLOR,
-            opacity: .6,
+            opacity: 0.6,
         },
     })
 

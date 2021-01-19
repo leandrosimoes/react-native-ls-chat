@@ -19,11 +19,11 @@ const ReplyControlsA11yLabel = 'Reply Message Control Button'
 const DeleteControlsA11yLabel = 'Delete Message Control Button'
 
 describe('Controls tests', () => {
-    onPressControlBody = jest.fn()
-    onDeleteControlButtonPress = jest.fn()
-    onReplyControlButtonPress = jest.fn()
-
     beforeEach(() => {
+        onPressControlBody = jest.fn()
+        onDeleteControlButtonPress = jest.fn()
+        onReplyControlButtonPress = jest.fn()
+
         mockUser = {
             id: 1,
             name: 'Test User',
@@ -61,6 +61,21 @@ describe('Controls tests', () => {
         const controls = queryByA11yLabel(ControlsA11yLabel)
 
         expect(controls).not.toBeNull()
+    })
+
+    it('Should Controls component NOT render if prop "message" is null', () => {
+        const { queryByA11yLabel } = render(
+            <Controls
+                user={mockUser}
+                message={null}
+                onPressControlBody={onPressControlBody}
+                onDeleteControlButtonPress={onDeleteControlButtonPress}
+                onReplyControlButtonPress={onReplyControlButtonPress}
+            />
+        )
+        const controls = queryByA11yLabel(ControlsA11yLabel)
+
+        expect(controls).toBeNull()
     })
 
     it('Should Delete button NOT render if message user is NOT the same as the logged user', () => {

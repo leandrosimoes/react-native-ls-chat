@@ -1,7 +1,6 @@
 import { StyleSheet } from 'react-native'
 import { IThemedComponentProps } from '../../../theme'
 
-
 const styles = (props: IThemedComponentProps) =>
     StyleSheet.create({
         container: {

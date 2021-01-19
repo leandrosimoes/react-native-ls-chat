@@ -1,4 +1,5 @@
-import * as React from "react"
+/* eslint-disable @typescript-eslint/naming-convention */
+import * as React from 'react'
 
 export const COMMON_COLORS = {
     BLACK: '#000',
@@ -17,7 +18,7 @@ export const DARK_COLORS = {
     RED: '#ff6768',
     YELLOW: '#ffe05d',
     GREEN: '#4ecca3',
-    ...COMMON_COLORS
+    ...COMMON_COLORS,
 }
 
 export const LIGHT_COLORS = {
@@ -26,7 +27,7 @@ export const LIGHT_COLORS = {
     RED: '#ec524b',
     YELLOW: '#ffd700',
     GREEN: '#61b15a',
-    ...COMMON_COLORS
+    ...COMMON_COLORS,
 }
 
 export enum ETheme {

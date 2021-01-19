@@ -64,11 +64,7 @@ const Controls: React.FC<IControlsProps> = ({
             accessibilityLabel='Selected Message Action Controls'
             accessibilityRole='button'>
             <View style={themedStyles.container}>
-                <Animated.View
-                    style={[
-                        themedStyles.controlsWrapper,
-                        { top: animatedTop },
-                    ]}>
+                <Animated.View style={[themedStyles.controlsWrapper, { top: animatedTop }]}>
                     {(isDelivered || isRead) && (
                         <TouchableWithoutFeedback
                             onPress={onReplyControlButtonPress}

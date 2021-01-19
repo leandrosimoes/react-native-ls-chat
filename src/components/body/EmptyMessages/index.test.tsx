@@ -26,9 +26,7 @@ describe('EmptyMessages tests', () => {
     })
 
     it('Should "Loading" message render if props "isLoading" === true', () => {
-        const { queryByText } = render(
-            <EmptyMessages isLoading={true} />
-        )
+        const { queryByText } = render(<EmptyMessages isLoading={true} />)
 
         const emptyMessagesTitle = queryByText(EmptyMessagesTitleText)
         const emptyMessagesText = queryByText(EmptyMessagesText)

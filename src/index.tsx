@@ -1,6 +1,7 @@
 import * as React from 'react'
 import { View } from 'react-native'
 
+import { useContext } from 'react'
 import Header from './components/Header'
 import Body from './components/Body'
 import Footer from './components/Footer'
@@ -9,7 +10,6 @@ import { IHeaderProps, ILsChatMessage, ILsChatUser } from './interfaces'
 import { ETheme, Theme, ThemeContext } from './theme'
 
 import styles from './styles'
-import { useContext } from 'react'
 
 export interface IChatProps {
     user: ILsChatUser
@@ -50,9 +50,7 @@ const ContentWrapper: React.FC<IChatProps> = ({
     onErrorDeleteMessage,
 }) => {
     const theme = useContext(ThemeContext)
-    const [replyingMessage, setReplyingMessage] = React.useState<
-        ILsChatMessage | undefined
-    >()
+    const [replyingMessage, setReplyingMessage] = React.useState<ILsChatMessage | undefined>()
 
     const onReplyControlPress = (message: ILsChatMessage) => {
         setReplyingMessage(message)
@@ -93,7 +91,7 @@ const LsChat: React.FC<IChatProps> = ({
     theme = ETheme.DARK,
     headerProps = {
         isVisible: true,
-        title: ''
+        title: '',
     },
     messages = [],
     messageSelectionEnabled = true,
@@ -109,8 +107,7 @@ const LsChat: React.FC<IChatProps> = ({
     onSuccessDeleteMessage,
     onErrorDeleteMessage,
 }) => {
-    const currentTheme =
-        theme === ETheme.LIGHT ? Theme.LightTheme : Theme.DarkTheme
+    const currentTheme = theme === ETheme.LIGHT ? Theme.LightTheme : Theme.DarkTheme
 
     if (!user) return null
 

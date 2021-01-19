@@ -37,7 +37,7 @@ const styles = (props: IThemedComponentProps) =>
         controlButtonBordered: {
             borderWidth: 0.5,
             borderColor: props.theme?.DEFAULT_BG_COLOR,
-        }
+        },
     })
 
 export default styles

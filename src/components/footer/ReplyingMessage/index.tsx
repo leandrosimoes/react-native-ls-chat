@@ -1,12 +1,5 @@
 import * as React from 'react'
-import {
-    Animated,
-    Easing,
-    Image,
-    Text,
-    TouchableWithoutFeedback,
-    View,
-} from 'react-native'
+import { Animated, Easing, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../../theme'
 import Icon, { ICONS } from '../../Icon'
@@ -54,7 +47,7 @@ const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
         return null
     }
 
-    const ifFromUser = user.id === message?.user.id
+    const isFromUser = user.id === message?.user.id
 
     return (
         <Animated.View
@@ -63,9 +56,7 @@ const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
             <View
                 style={[
                     themedStyles.message,
-                    ifFromUser
-                        ? themedStyles.messageFromUser
-                        : themedStyles.messageFromAnotherUser,
+                    isFromUser ? themedStyles.messageFromUser : themedStyles.messageFromAnotherUser,
                 ]}>
                 <View style={themedStyles.messageUserWrapper}>
                     {message.user.photo && (

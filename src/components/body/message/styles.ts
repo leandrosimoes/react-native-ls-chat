@@ -139,14 +139,14 @@ const styles = (props: IThemedComponentProps) =>
             borderRadius: 5,
         },
         replyingMessage: {
-            opacity: .7,
+            opacity: 0.7,
             borderTopLeftRadius: 5,
             borderTopRightRadius: 5,
             position: 'relative',
             transform: [
                 {
-                    scale: 0.9
-                }
+                    scale: 0.9,
+                },
             ],
             top: 25,
         },
@@ -157,7 +157,7 @@ const styles = (props: IThemedComponentProps) =>
             top: 15,
             left: 30,
             opacity: 0.9,
-        }
+        },
     })
 
 export default styles

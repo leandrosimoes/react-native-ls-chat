@@ -58,6 +58,8 @@ const Footer: React.FC<IFooterProps> = ({
 
         onCancelReplyingMessage()
         setMessage('')
+
+        // eslint-disable-next-line no-unused-expressions
         inputRef?.current?.blur()
 
         try {
