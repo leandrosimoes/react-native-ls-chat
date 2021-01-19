@@ -127,6 +127,7 @@
     }
   },
   "ignorePatterns": [
-    "*.config.js"
+    "*.config.js",
+    "*.test.*"
   ]
 }
