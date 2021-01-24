@@ -11,10 +11,11 @@
     "lib"
   ],
   "scripts": {
-    "compile": "rm -rf lib && tsc -p . && cp -Rf lib/. example/node_modules/react-native-ls-chat/",
+    "compile": "rm -rf lib && tsc -p .",
+    "compile:dev": "rm -rf lib && tsc -p . && cp -Rf lib/. example/node_modules/react-native-ls-chat/",
     "lint": "eslint src/**",
     "prepare": "yarn compile",
-    "dev": "tsc-watch --onSuccess \"yarn compile\"",
+    "dev": "tsc-watch --onSuccess \"yarn compile:dev\"",
     "test": "jest"
   },
   "devDependencies": {
