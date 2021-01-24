@@ -39,7 +39,7 @@ interface IChatProps {
 }
 
 interface ILsChatUser {
-    id: number
+    id: string
     name: string
     photo?: string
 }

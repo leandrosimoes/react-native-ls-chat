@@ -9,7 +9,7 @@ import {
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../../theme'
 import Icon from '../../Icon'
-import icons from '../../Icon/icons'
+import icons from '../../Icon/Icons'
 import styles from './styles'
 
 interface IControlsProps {

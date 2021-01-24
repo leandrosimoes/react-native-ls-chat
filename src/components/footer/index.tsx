@@ -10,7 +10,7 @@ import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../theme'
 import { guid } from '../../utils'
 import Icon from '../Icon'
-import { ICONS } from '../Icon/icons'
+import { ICONS } from '../Icon/Icons'
 import ReplyingMessage from './ReplyingMessage'
 
 import styles from './styles'

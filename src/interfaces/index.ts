@@ -1,7 +1,7 @@
 import { GestureResponderEvent, ImageSourcePropType } from 'react-native'
 
 export interface ILsChatUser {
-    id: number
+    id: string
     name: string
     photo?: string
 }

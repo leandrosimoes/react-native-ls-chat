@@ -2,7 +2,7 @@ import * as React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
 import { COMMON_COLORS } from '../../../theme'
 import Icon, { EIconSize } from '../../Icon'
-import { ICONS } from '../../Icon/icons'
+import { ICONS } from '../../Icon/Icons'
 
 import styles from './styles'
 

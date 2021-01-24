@@ -5,7 +5,7 @@ import { ThemeContext } from '../../../theme'
 import Icon, { EIconSize } from '../../Icon'
 import Arrow from './Arrow'
 
-import { ICONS } from '../../Icon/icons'
+import { ICONS } from '../../Icon/Icons'
 import styles from './styles'
 
 enum EStatusMessage {

@@ -3,7 +3,7 @@ import { StyleProp, ViewStyle } from 'react-native'
 import Svg, { Path } from 'react-native-svg'
 import { ThemeContext } from '../../theme'
 
-export { default as ICONS } from './icons'
+export { default as ICONS } from './Icons'
 
 export enum EIconSize {
     LARGE = 2.0,
