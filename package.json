@@ -52,7 +52,8 @@
   },
   "peerDependencies": {
     "react": "*",
-    "react-native": "*"
+    "react-native": "*",
+    "react-native-svg": "^12.1.0"
   },
   "dependencies": {
     "react-native-svg": "^12.1.0"

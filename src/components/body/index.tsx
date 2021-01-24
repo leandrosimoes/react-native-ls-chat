@@ -51,7 +51,7 @@ const Body: React.FC<IBodyProps> = ({
     const [showScrollToBottonButton, setShowScrollToBottonButton] = React.useState(false)
 
     let lastDate = React.useRef<Date | undefined>().current
-    let lastUser = React.useRef<number>(0).current
+    let lastUser = React.useRef<string>('0').current
 
     const onMessageItemLongPress = (message: ILsChatMessage) => {
         if (messageSelectionEnabled) setSelectedMessage(message)
