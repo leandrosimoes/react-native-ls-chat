@@ -210,3 +210,13 @@ export default Chat
 ## FAQ
 
 * This package has a third party package as a direct dependency. The package is the [react-native-svg](https://github.com/react-native-svg/react-native-svg/tree/v12.1.0) at version `12.1.0` so if this package do not install by default, just follow the instructions there to install it properly.
+
+## To do
+
+- [ ] Add image file selection support
+- [ ] Add camera photo support
+- [ ] Add video file selection support
+- [ ] Add camera video recording support
+- [ ] Add audio file selection support
+- [ ] Add mic audio recording support
+- [ ] Add file selection support
