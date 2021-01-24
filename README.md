@@ -12,6 +12,12 @@ To see it working on your device, get a look at the [sample project](https://git
 
 ## Installation
 
+### 1 - Installing peer dependencies
+
+This project has a peer dependency called [react-native-svg](https://github.com/react-native-svg/react-native-svg/tree/v12.1.0), follow the instructions there before install this package.
+
+### 2 - Installing this package
+
 `npm i react-native-ls-chat` or `yarn add react-native-ls-chat`
 
 ## Data Structure
@@ -209,7 +215,7 @@ export default Chat
 
 ## FAQ
 
-* This package has a third party package as a direct dependency. The package is the [react-native-svg](https://github.com/react-native-svg/react-native-svg/tree/v12.1.0) at version `12.1.0` so if this package do not install by default, just follow the instructions there to install it properly.
+* This package has a third party package as a peer dependency. The package is the [react-native-svg](https://github.com/react-native-svg/react-native-svg/tree/v12.1.0) at version `12.1.0` so if this package do not install by default, just follow the instructions there to install it properly.
 
 ## To do
 
