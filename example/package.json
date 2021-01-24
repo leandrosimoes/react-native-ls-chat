@@ -14,8 +14,7 @@
     "faker": "^5.1.0",
     "react": "16.13.1",
     "react-native": "0.63.4",
-    "react-native-ls-chat": "../lib",
-    "react-native-svg": "^12.1.0"
+    "react-native-ls-chat": "git://github.com/leandrosimoes/react-native-ls-chat.git#develop"
   },
   "devDependencies": {
     "@babel/core": "^7.8.4",
