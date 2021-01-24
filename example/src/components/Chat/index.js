@@ -3,7 +3,7 @@ import { Modal } from 'react-native'
 import LsChat, { LsChatTheme } from 'react-native-ls-chat'
 import { random } from 'faker'
 import { getPrevRandomMessages, getRandomMessages, getRandomUsers, MAIN_USER } from '../../api'
-import { asyncForEach, delay } from '../../utils'
+import { delay } from '../../utils'
 
 const Chat = ({ isVisible, onCloseButtonPress, isDarkTheme }) => {
     const [messages, setMessages] = useState([])
