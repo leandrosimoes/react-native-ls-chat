@@ -4,7 +4,7 @@ import { TouchableWithoutFeedback, View } from 'react-native'
 import { IHeaderProps } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 
-import Icon, { ICONS } from '../../Icon'
+import SvgIcon, { ICONS } from '../../SvgIcon'
 
 const CloseButton: React.FC<IHeaderProps> = ({ onCloseButtonPress }) => {
     const theme = React.useContext(ThemeContext)
@@ -23,7 +23,7 @@ const CloseButton: React.FC<IHeaderProps> = ({ onCloseButtonPress }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-                <Icon
+                <SvgIcon
                     path={ICONS.timesCircle}
                     fill={theme.CLOSE_ICON_FG_COLOR}
                     stroke={theme.CLOSE_ICON_FG_COLOR}

@@ -9,8 +9,8 @@ import {
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../theme'
 import { guid } from '../../utils'
-import Icon from '../Icon'
-import { ICONS } from '../Icon/Icons'
+import SvgIcon from '../SvgIcon'
+import { ICONS } from '../SvgIcon/SvgIcons'
 import ReplyingMessage from './ReplyingMessage'
 
 import styles from './styles'
@@ -108,7 +108,7 @@ const Footer: React.FC<IFooterProps> = ({
                     accessibilityLabel='Send chat message button'
                     accessibilityRole='button'>
                     <View style={themedStyle.sendButton}>
-                        <Icon
+                        <SvgIcon
                             path={ICONS.send}
                             fill={theme.PRIMARY_BUTTON_FG_COLOR}
                             stroke={theme.PRIMARY_BUTTON_FG_COLOR}
