@@ -6,17 +6,27 @@
     "prettier",
     "prettier/react"
   ],
+  "env": {
+    "jest": true
+  },
   "globals": {
     "__DEV__": true
   },
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
+    "ecmaVersion": 2020,
     "useJSXTextNode": true,
-    "project": "./tsconfig.json",
-    "tsconfigRootDir": "."
+    "project": "tsconfig.json",
+    "tsconfigRootDir": ".",
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
   },
   "rules": {
     "radix": 0,
+    "no-nested-ternary": 0,
+    "react/jsx-props-no-spreading": 0,
     "no-prototype-builtins": 0,
     "no-return-await": 0,
     "no-empty": 0,
@@ -40,7 +50,7 @@
           "selector": "variable",
           "types": ["boolean"],
           "format": ["PascalCase"],
-          "prefix": ["is", "should", "has", "can", "did", "will"]
+          "prefix": ["is", "should", "has", "can", "did", "will", "show"]
         },
         {
           "selector": "parameter", "format": ["camelCase"], "leadingUnderscore": "allow"
@@ -89,7 +99,12 @@
       "error",
       {
         "trailingComma": "es5",
+        "tabWidth": 4,
+        "semi": false,
         "singleQuote": true,
+        "jsxSingleQuote": true,
+        "jsxBracketSameLine": true,
+        "endOfLine": "auto",
         "printWidth": 100
       }
     ]
@@ -100,7 +115,8 @@
     "prettier",
     "react",
     "react-hooks",
-    "@typescript-eslint"
+    "@typescript-eslint",
+    "jest"
   ],
   "settings": {
     "import/resolver": {
@@ -111,6 +127,7 @@
     }
   },
   "ignorePatterns": [
-    "*.config.js"
+    "*.config.js",
+    "*.test.*"
   ]
 }
