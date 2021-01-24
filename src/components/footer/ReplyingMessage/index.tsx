@@ -2,7 +2,7 @@ import * as React from 'react'
 import { Animated, Easing, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../../theme'
-import Icon, { ICONS } from '../../Icon'
+import SvgIcon, { ICONS } from '../../SvgIcon'
 
 import styles from './styles'
 
@@ -81,7 +81,7 @@ const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
                 accessibilityRole='button'
                 accessibilityLabel='Cancel Message Reply Button'>
                 <View style={themedStyles.closeButton}>
-                    <Icon
+                    <SvgIcon
                         path={ICONS.timesCircle}
                         fill={COMMON_COLORS.WHITE}
                         stroke={COMMON_COLORS.WHITE}

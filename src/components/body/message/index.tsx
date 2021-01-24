@@ -2,10 +2,10 @@ import * as React from 'react'
 import { Animated, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
-import Icon, { EIconSize } from '../../Icon'
+import SvgIcon, { EIconSize } from '../../SvgIcon'
 import Arrow from './Arrow'
 
-import { ICONS } from '../../Icon/Icons'
+import { ICONS } from '../../SvgIcon/SvgIcons'
 import styles from './styles'
 
 enum EStatusMessage {
@@ -158,7 +158,7 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
                             {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
                         </Text>
                         {status === EStatusMessage.WAITING && (
-                            <Icon
+                            <SvgIcon
                                 style={themedStyles.messageStatusIcon}
                                 path={ICONS.clock}
                                 fill={theme.MESSAGE_PENDING_ICON_COLOR}
@@ -167,7 +167,7 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
                             />
                         )}
                         {status === EStatusMessage.DELIVERED && (
-                            <Icon
+                            <SvgIcon
                                 style={themedStyles.messageStatusIcon}
                                 path={ICONS.check}
                                 fill={theme.MESSAGE_DELIVERY_ICON_COLOR}
@@ -177,7 +177,7 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
                         )}
                         {status === EStatusMessage.VIEWED && (
                             <>
-                                <Icon
+                                <SvgIcon
                                     style={[
                                         themedStyles.messageStatusIcon,
                                         themedStyles.messageStatusDeliveredIcon1,
@@ -187,7 +187,7 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
                                     stroke={theme.MESSAGE_READ_ICON_COLOR}
                                     size={EIconSize.TINY}
                                 />
-                                <Icon
+                                <SvgIcon
                                     style={[
                                         themedStyles.messageStatusIcon,
                                         themedStyles.messageStatusDeliveredIcon2,
@@ -294,7 +294,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                             {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
                         </Text>
                         {status === EStatusMessage.WAITING && (
-                            <Icon
+                            <SvgIcon
                                 style={themedStyles.messageStatusIcon}
                                 path={ICONS.clock}
                                 fill={theme.MESSAGE_PENDING_ICON_COLOR}
@@ -303,7 +303,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                             />
                         )}
                         {status === EStatusMessage.DELIVERED && (
-                            <Icon
+                            <SvgIcon
                                 style={themedStyles.messageStatusIcon}
                                 path={ICONS.check}
                                 fill={theme.MESSAGE_DELIVERY_ICON_COLOR}
@@ -313,7 +313,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                         )}
                         {status === EStatusMessage.VIEWED && (
                             <>
-                                <Icon
+                                <SvgIcon
                                     style={[
                                         themedStyles.messageStatusIcon,
                                         themedStyles.messageStatusDeliveredIcon1,
@@ -323,7 +323,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                                     stroke={theme.MESSAGE_READ_ICON_COLOR}
                                     size={EIconSize.TINY}
                                 />
-                                <Icon
+                                <SvgIcon
                                     style={[
                                         themedStyles.messageStatusIcon,
                                         themedStyles.messageStatusDeliveredIcon2,
