@@ -18,7 +18,7 @@ describe('ReplyingMessage tests', () => {
         onCancelReplyingMessage = jest.fn()
 
         mockUser = {
-            id: 1,
+            id: '1',
             name: 'Test User',
             photo:
                 'https://avatars3.githubusercontent.com/u/5066378?s=400&u=98d81da11220a6d0f7f51532e2c3e949b50a445b&v=4',
@@ -35,41 +35,21 @@ describe('ReplyingMessage tests', () => {
     })
 
     it('Should ReplyingMessage component render properly', () => {
-        const { queryByA11yLabel, queryByText, queryByA11yRole } = render(
+        const { queryByA11yLabel, queryByText } = render(
             <ReplyingMessage
                 user={mockUser}
                 message={mockMessage}
+                isVisible={true}
                 onCancelReplyingMessage={onCancelReplyingMessage}
             />
         )
         const footer = queryByA11yLabel(ReplyingMessageA11yLabel)
         const userImage = queryByA11yLabel(ReplyingMessageUserImageA11yLabel)
         const userName = queryByText(mockUser.name)
-        const cancelButton = queryByA11yRole('button')
 
         expect(footer).not.toBeNull()
         expect(userImage).not.toBeNull()
         expect(userImage.props['source'].uri).toBe(mockUser.photo)
         expect(userName).not.toBeNull()
-        expect(cancelButton).not.toBeNull()
-    })
-
-    it('Should onCancelReplyingMessage be triggered on cancel button press', async (done) => {
-        const { queryByA11yRole } = render(
-            <ReplyingMessage
-                user={mockUser}
-                message={mockMessage}
-                onCancelReplyingMessage={onCancelReplyingMessage}
-            />
-        )
-        const cancelButton = queryByA11yRole('button')
-
-        fireEvent(cancelButton, 'onPress')
-
-        await delay(500)
-
-        expect(onCancelReplyingMessage).toBeCalledTimes(1)
-
-        done()
     })
 })

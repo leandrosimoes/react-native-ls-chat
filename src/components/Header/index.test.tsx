@@ -9,7 +9,7 @@ let mockUser: ILsChatUser
 describe('Header tests', () => {
     beforeEach(() => {
         mockUser = {
-            id: 1,
+            id: '1',
             name: 'Test User',
             photo:
                 'https://avatars3.githubusercontent.com/u/5066378?s=400&u=98d81da11220a6d0f7f51532e2c3e949b50a445b&v=4',
