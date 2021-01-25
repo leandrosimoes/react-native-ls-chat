@@ -9,8 +9,7 @@ import {
 import { ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../theme'
 import { guid } from '../../utils'
-import SvgIcon from '../SvgIcon'
-import { ICONS } from '../SvgIcon/SvgIcons'
+import ImageIcon, { ICONS } from '../ImageIcon'
 import ReplyingMessage from './ReplyingMessage'
 
 import styles from './styles'
@@ -40,6 +39,7 @@ const Footer: React.FC<IFooterProps> = ({
     const themedStyle = styles({ theme })
 
     const [message, setMessage] = React.useState('')
+    const [isReplyingMessage, setIsReplyingMessage] = React.useState(false)
     const inputRef = React.useRef<TextInput>(null)
 
     const onSendButtonPress = async () => {
@@ -83,11 +83,20 @@ const Footer: React.FC<IFooterProps> = ({
         setMessage(nativeEvent.text)
     }
 
+    const onCancelReplyingMessageInternal = () => {
+        setIsReplyingMessage(false)
+    }
+
+    React.useEffect(() => {
+        setIsReplyingMessage(!!replyingMessage)
+    }, [replyingMessage])
+
     return (
         <View style={themedStyle.container} accessibilityLabel='Chat footer'>
             <ReplyingMessage
                 user={user}
                 message={replyingMessage}
+                isVisible={isReplyingMessage}
                 onCancelReplyingMessage={onCancelReplyingMessage}
             />
             <View style={themedStyle.controlsWrapper}>
@@ -102,17 +111,20 @@ const Footer: React.FC<IFooterProps> = ({
                     editable={!isLoading}
                     accessibilityLabel='Chat message input'
                 />
+                {isReplyingMessage && (
+                    <TouchableWithoutFeedback onPress={onCancelReplyingMessageInternal}>
+                        <View style={themedStyle.cancelReplyButton}>
+                            <ImageIcon icon={ICONS.closeWhite} />
+                        </View>
+                    </TouchableWithoutFeedback>
+                )}
                 <TouchableWithoutFeedback
                     onPress={onSendButtonPress}
                     disabled={isLoading}
                     accessibilityLabel='Send chat message button'
                     accessibilityRole='button'>
                     <View style={themedStyle.sendButton}>
-                        <SvgIcon
-                            path={ICONS.send}
-                            fill={theme.PRIMARY_BUTTON_FG_COLOR}
-                            stroke={theme.PRIMARY_BUTTON_FG_COLOR}
-                        />
+                        <ImageIcon icon={ICONS.send} />
                     </View>
                 </TouchableWithoutFeedback>
             </View>

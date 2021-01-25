@@ -1,8 +1,7 @@
 import * as React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
-import { COMMON_COLORS } from '../../../theme'
-import SvgIcon, { EIconSize } from '../../SvgIcon'
-import { ICONS } from '../../SvgIcon/SvgIcons'
+import ImageIcon from '../../ImageIcon'
+import { ICONS } from '../../ImageIcon/ImageIcons'
 
 import styles from './styles'
 
@@ -20,12 +19,7 @@ const ScrollToBottomButton: React.FC<IScrollToBottomButtonProps> = ({ isVisible,
             accessibilityLabel='Button to scroll the list of messsages back to bottom'
             accessibilityRole='button'>
             <View style={styles.container}>
-                <SvgIcon
-                    path={ICONS.chevronDownCircle}
-                    fill={COMMON_COLORS.BLUE}
-                    stroke={COMMON_COLORS.BLUE}
-                    size={EIconSize.MEDIUM}
-                />
+                <ImageIcon icon={ICONS.chevronDownCircle} />
             </View>
         </TouchableWithoutFeedback>
     )

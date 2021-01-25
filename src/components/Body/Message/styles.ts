@@ -77,8 +77,9 @@ const styles = (props: IThemedComponentProps) =>
             bottom: 5,
             right: 5,
         },
-        messageStatusDeliveredIcon1: { right: 10 },
-        messageStatusDeliveredIcon2: { right: 5 },
+        messageStatusDeliveredIcon: {
+            right: 5,
+        },
         dateSeparator: {
             color: props.theme?.DEFAULT_COLOR,
             textAlign: 'center',

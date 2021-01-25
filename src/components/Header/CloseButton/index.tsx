@@ -2,13 +2,10 @@ import * as React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
 
 import { IHeaderProps } from '../../../interfaces'
-import { ThemeContext } from '../../../theme'
 
-import SvgIcon, { ICONS } from '../../SvgIcon'
+import ImageIcon, { ICONS } from '../../ImageIcon'
 
 const CloseButton: React.FC<IHeaderProps> = ({ onCloseButtonPress }) => {
-    const theme = React.useContext(ThemeContext)
-
     if (onCloseButtonPress === undefined) return null
 
     return (
@@ -23,11 +20,7 @@ const CloseButton: React.FC<IHeaderProps> = ({ onCloseButtonPress }) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                 }}>
-                <SvgIcon
-                    path={ICONS.timesCircle}
-                    fill={theme.CLOSE_ICON_FG_COLOR}
-                    stroke={theme.CLOSE_ICON_FG_COLOR}
-                />
+                <ImageIcon icon={ICONS.close} />
             </View>
         </TouchableWithoutFeedback>
     )

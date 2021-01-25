@@ -1,20 +1,21 @@
 import * as React from 'react'
-import { Animated, Easing, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
+import { Animated, Easing, Image, Text, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
-import { COMMON_COLORS, ThemeContext } from '../../../theme'
-import SvgIcon, { ICONS } from '../../SvgIcon'
+import { ThemeContext } from '../../../theme'
 
 import styles from './styles'
 
 interface IReplyingMessageProps {
     user: ILsChatUser
     message?: ILsChatMessage
+    isVisible: boolean
     onCancelReplyingMessage: { (): void }
 }
 
 const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
     user,
     message,
+    isVisible,
     onCancelReplyingMessage,
 }) => {
     const theme = React.useContext(ThemeContext)
@@ -29,23 +30,23 @@ const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
     })
 
     const slideDownAnimation = Animated.timing(animatedTop, {
-        toValue: 0,
+        toValue: 10,
         duration: 300,
         useNativeDriver: false,
         easing: Easing.out(Easing.elastic(1)),
     })
 
-    const onCancelReplyingMessageInternal = () => {
-        slideDownAnimation.start(() => {
-            onCancelReplyingMessage()
-        })
-    }
+    React.useEffect(() => {
+        if (isVisible) {
+            slideUpAnimation.start()
+        } else {
+            slideDownAnimation.start(() => {
+                onCancelReplyingMessage()
+            })
+        }
+    }, [isVisible])
 
-    if (message) {
-        slideUpAnimation.start()
-    } else {
-        return null
-    }
+    if (!message) return null
 
     const isFromUser = user.id === message?.user.id
 
@@ -76,18 +77,6 @@ const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
                 </View>
                 <Text style={themedStyles.messageText}>{message.text}</Text>
             </View>
-            <TouchableWithoutFeedback
-                onPress={onCancelReplyingMessageInternal}
-                accessibilityRole='button'
-                accessibilityLabel='Cancel Message Reply Button'>
-                <View style={themedStyles.closeButton}>
-                    <SvgIcon
-                        path={ICONS.timesCircle}
-                        fill={COMMON_COLORS.WHITE}
-                        stroke={COMMON_COLORS.WHITE}
-                    />
-                </View>
-            </TouchableWithoutFeedback>
         </Animated.View>
     )
 }
