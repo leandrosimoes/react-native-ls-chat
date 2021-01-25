@@ -7,9 +7,9 @@ import {
     View,
 } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
-import { COMMON_COLORS, ThemeContext } from '../../../theme'
-import SvgIcon from '../../SvgIcon'
-import { ICONS } from '../../SvgIcon/SvgIcons'
+import { ThemeContext } from '../../../theme'
+import ImageIcon from '../../ImageIcon'
+import { ICONS } from '../../ImageIcon/ImageIcons'
 import styles from './styles'
 
 interface IControlsProps {
@@ -75,11 +75,7 @@ const Controls: React.FC<IControlsProps> = ({
                                     themedStyles.controlButton,
                                     themedStyles.controlButtonBordered,
                                 ]}>
-                                <SvgIcon
-                                    path={ICONS.reply}
-                                    fill={COMMON_COLORS.WHITE}
-                                    stroke={COMMON_COLORS.WHITE}
-                                />
+                                <ImageIcon icon={ICONS.reply} />
                             </View>
                         </TouchableWithoutFeedback>
                     )}
@@ -89,11 +85,7 @@ const Controls: React.FC<IControlsProps> = ({
                             accessibilityRole='button'
                             accessibilityLabel='Delete Message Control Button'>
                             <View style={themedStyles.controlButton}>
-                                <SvgIcon
-                                    path={ICONS.trash}
-                                    fill={COMMON_COLORS.WHITE}
-                                    stroke={COMMON_COLORS.WHITE}
-                                />
+                                <ImageIcon icon={ICONS.trash} />
                             </View>
                         </TouchableWithoutFeedback>
                     )}

@@ -6,6 +6,7 @@ const styles = (props: IThemedComponentProps) =>
         container: {
             flexDirection: 'column',
             position: 'relative',
+            zIndex: 3,
         },
         controlsWrapper: {
             flexDirection: 'row',
@@ -30,6 +31,13 @@ const styles = (props: IThemedComponentProps) =>
             justifyContent: 'center',
             alignItems: 'center',
             backgroundColor: props.theme?.PRIMARY_BUTTON_BG_COLOR,
+        },
+        cancelReplyButton: {
+            width: 60,
+            height: 60,
+            justifyContent: 'center',
+            alignItems: 'center',
+            backgroundColor: props.theme?.MESSAGE_SELECTED_BG_COLOR,
         },
     })
 

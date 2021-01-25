@@ -2,10 +2,10 @@ import * as React from 'react'
 import { Animated, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
 import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
-import SvgIcon, { EIconSize } from '../../SvgIcon'
+import ImageIcon from '../../ImageIcon'
+import { ICONS } from '../../ImageIcon/ImageIcons'
 import Arrow from './Arrow'
 
-import { ICONS } from '../../SvgIcon/SvgIcons'
 import styles from './styles'
 
 enum EStatusMessage {
@@ -158,46 +158,24 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
                             {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
                         </Text>
                         {status === EStatusMessage.WAITING && (
-                            <SvgIcon
+                            <ImageIcon
                                 style={themedStyles.messageStatusIcon}
-                                path={ICONS.clock}
-                                fill={theme.MESSAGE_PENDING_ICON_COLOR}
-                                stroke={theme.MESSAGE_PENDING_ICON_COLOR}
-                                size={EIconSize.TINY}
+                                icon={ICONS.clock}
+                                width={13}
+                                height={13}
                             />
                         )}
                         {status === EStatusMessage.DELIVERED && (
-                            <SvgIcon
-                                style={themedStyles.messageStatusIcon}
-                                path={ICONS.check}
-                                fill={theme.MESSAGE_DELIVERY_ICON_COLOR}
-                                stroke={theme.MESSAGE_DELIVERY_ICON_COLOR}
-                                size={EIconSize.TINY}
-                            />
+                            <ImageIcon style={themedStyles.messageStatusIcon} icon={ICONS.check} />
                         )}
                         {status === EStatusMessage.VIEWED && (
-                            <>
-                                <SvgIcon
-                                    style={[
-                                        themedStyles.messageStatusIcon,
-                                        themedStyles.messageStatusDeliveredIcon1,
-                                    ]}
-                                    path={ICONS.check}
-                                    fill={theme.MESSAGE_READ_ICON_COLOR}
-                                    stroke={theme.MESSAGE_READ_ICON_COLOR}
-                                    size={EIconSize.TINY}
-                                />
-                                <SvgIcon
-                                    style={[
-                                        themedStyles.messageStatusIcon,
-                                        themedStyles.messageStatusDeliveredIcon2,
-                                    ]}
-                                    path={ICONS.check}
-                                    fill={theme.MESSAGE_READ_ICON_COLOR}
-                                    stroke={theme.MESSAGE_READ_ICON_COLOR}
-                                    size={EIconSize.TINY}
-                                />
-                            </>
+                            <ImageIcon
+                                style={[
+                                    themedStyles.messageStatusIcon,
+                                    themedStyles.messageStatusDeliveredIcon,
+                                ]}
+                                icon={ICONS.checkDouble}
+                            />
                         )}
                     </Animated.View>
                 </ReplyWrapper>
@@ -294,46 +272,24 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                             {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
                         </Text>
                         {status === EStatusMessage.WAITING && (
-                            <SvgIcon
+                            <ImageIcon
                                 style={themedStyles.messageStatusIcon}
-                                path={ICONS.clock}
-                                fill={theme.MESSAGE_PENDING_ICON_COLOR}
-                                stroke={theme.MESSAGE_PENDING_ICON_COLOR}
-                                size={EIconSize.TINY}
+                                icon={ICONS.clock}
+                                width={13}
+                                height={13}
                             />
                         )}
                         {status === EStatusMessage.DELIVERED && (
-                            <SvgIcon
-                                style={themedStyles.messageStatusIcon}
-                                path={ICONS.check}
-                                fill={theme.MESSAGE_DELIVERY_ICON_COLOR}
-                                stroke={theme.MESSAGE_DELIVERY_ICON_COLOR}
-                                size={EIconSize.TINY}
-                            />
+                            <ImageIcon style={themedStyles.messageStatusIcon} icon={ICONS.check} />
                         )}
                         {status === EStatusMessage.VIEWED && (
-                            <>
-                                <SvgIcon
-                                    style={[
-                                        themedStyles.messageStatusIcon,
-                                        themedStyles.messageStatusDeliveredIcon1,
-                                    ]}
-                                    path={ICONS.check}
-                                    fill={theme.MESSAGE_READ_ICON_COLOR}
-                                    stroke={theme.MESSAGE_READ_ICON_COLOR}
-                                    size={EIconSize.TINY}
-                                />
-                                <SvgIcon
-                                    style={[
-                                        themedStyles.messageStatusIcon,
-                                        themedStyles.messageStatusDeliveredIcon2,
-                                    ]}
-                                    path={ICONS.check}
-                                    fill={theme.MESSAGE_READ_ICON_COLOR}
-                                    stroke={theme.MESSAGE_READ_ICON_COLOR}
-                                    size={EIconSize.TINY}
-                                />
-                            </>
+                            <ImageIcon
+                                style={[
+                                    themedStyles.messageStatusIcon,
+                                    themedStyles.messageStatusDeliveredIcon,
+                                ]}
+                                icon={ICONS.checkDouble}
+                            />
                         )}
                     </Animated.View>
                 </ReplyWrapper>

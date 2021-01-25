@@ -19,8 +19,6 @@ export class User {
         this.id = random.uuid()
         this.name = _name || name.findName('', '', gender)
 
-        console.log(avatar, this.name)
-
         this.photo = _photo || generateAvatar()
     }
 }
