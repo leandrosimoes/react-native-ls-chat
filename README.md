@@ -5,7 +5,7 @@ React Native Ls Chat is a chat component ready to use. Just follow the documenta
 ## How it looks
 
 <p align="center">
-    <img src="rn-ls-chat-sample.gif" alt="LS Chat Sample" width="200"  />
+    <img src="https://github.com/leandrosimoes/react-native-ls-chat/raw/master/rn-ls-chat-sample.gif" alt="LS Chat Sample" width="200"  />
 </p>
 
 To see it working on your device, get a look at the [sample project](https://github.com/leandrosimoes/react-native-ls-chat/tree/main/example) included in this repository. Just clone this and follow the steps described there to run on your device.
