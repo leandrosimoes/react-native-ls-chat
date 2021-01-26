@@ -2,6 +2,12 @@
 
 React Native Ls Chat is a chat component ready to use. Just follow the documentation bellow and you'll be just fine.
 
+
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/fc15ad2ad16b460583651143d4bdfd99)](https://www.codacy.com/gh/leandrosimoes/react-native-ls-chat/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=leandrosimoes/react-native-ls-chat&amp;utm_campaign=Badge_Grade)
+[![npm version](https://badge.fury.io/js/react-native-ls-chat.svg)](https://badge.fury.io/js/react-native-ls-chat)
+![Node CI](https://github.com/leandrosimoes/react-native-ls-chat/workflows/Node%20CI/badge.svg)
+![Node.js Package](https://github.com/leandrosimoes/react-native-ls-chat/workflows/Node%2Ejs%20Package/badge.svg)
+
 ## How it looks
 
 <p align="center">
