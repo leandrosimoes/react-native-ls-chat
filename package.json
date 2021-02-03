@@ -1,6 +1,6 @@
 {
   "name": "react-native-ls-chat",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "",
   "homepage": "https://github.com/leandrosimoes/react-native-ls-chat",
   "main": "lib/index.js",
@@ -11,7 +11,7 @@
     "lib"
   ],
   "scripts": {
-    "compile": "rm -rf lib && tsc -p .",
+    "compile": "rm -rf lib && tsc -p . && cp -Rf src/images lib/images",
     "compile:dev": "rm -rf lib && tsc -p . && cp -Rf src/images lib/images && cp -Rf lib/. example/node_modules/react-native-ls-chat/",
     "lint": "eslint src/**",
     "prepare": "yarn compile",
