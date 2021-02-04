@@ -24,7 +24,7 @@ export interface IChatProps {
     onMessageTextInputChange: { (text: string): void }
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessSendMessage: { (message: ILsChatMessage): void }
-    onErrorSendMessage: { (error: any): void }
+    onErrorSendMessage: { (message: ILsChatMessage, error: any): void }
     onDeleteMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
     onSuccessDeleteMessage: { (message: ILsChatMessage): void }
     onErrorDeleteMessage: { (error: any): void }

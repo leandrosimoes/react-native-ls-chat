@@ -65,7 +65,7 @@ const Body: React.FC<IBodyProps> = ({
             onSuccessDeleteMessage(selectedMessage)
             setSelectedMessage(undefined)
         } catch (error) {
-            onErrorDeleteMessage(selectedMessage)
+            onErrorDeleteMessage(error)
         }
     }
 
