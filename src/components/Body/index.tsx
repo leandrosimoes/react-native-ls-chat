@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { FlatList, NativeScrollEvent, NativeSyntheticEvent, View } from 'react-native'
 
-import { ILsChatMessage, ILsChatUser } from '../../interfaces'
+import { IBodyProps, ILsChatMessage } from '../../interfaces'
 import { ThemeContext } from '../../theme'
 import { MessageFromUser, MessageFromAnotherUser } from './Message'
 import EmptyMessages from './EmptyMessages'
@@ -11,25 +11,7 @@ import Controls from './Controls'
 import TypingIndicator from './TypingIndicator'
 import LoadingIndicator from './LoadingIndicator'
 import ScrollToBottomButton from './ScrollToBottomButton'
-
-interface IBodyProps {
-    user: ILsChatUser
-    messages: ILsChatMessage[]
-    messageSelectionEnabled: boolean
-    isTyping: boolean
-    isFeching: boolean
-    isLoading: boolean
-    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number }): void }
-    onReplyControlPress: { (replyingMessage: ILsChatMessage): void }
-    onDeleteMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
-    onSuccessDeleteMessage: { (message: ILsChatMessage): void }
-    onErrorDeleteMessage: { (error: any): void }
-}
-
-type TLsChatMessageDesign = ILsChatMessage & {
-    showDateOnTop: boolean
-    showArrow: boolean
-}
+import { TLsChatMessageDesign } from '../../types'
 
 const Body: React.FC<IBodyProps> = ({
     messages,
@@ -38,6 +20,8 @@ const Body: React.FC<IBodyProps> = ({
     isTyping,
     isFeching,
     isLoading,
+    messageDateFormat,
+    interfaceTexts,
     onReachEndOfMessagesList,
     onReplyControlPress,
     onDeleteMessage,
@@ -128,7 +112,14 @@ const Body: React.FC<IBodyProps> = ({
                 keyExtractor={(_, index) => index.toString()}
                 ListFooterComponent={<LoadingIndicator isFeching={isFeching || isLoading} />}
                 ListHeaderComponent={<TypingIndicator isTyping={isTyping} />}
-                ListEmptyComponent={<EmptyMessages isLoading={isLoading} />}
+                ListEmptyComponent={
+                    <EmptyMessages
+                        isLoading={isLoading}
+                        title={interfaceTexts?.emptyMessagesTitle}
+                        message={interfaceTexts?.emptyMessagesMessage}
+                        loadingMessage={interfaceTexts?.loading}
+                    />
+                }
                 onEndReached={onReachEndOfMessagesList}
                 onEndReachedThreshold={0.2}
                 onScroll={onMessageListScroll}
@@ -140,8 +131,9 @@ const Body: React.FC<IBodyProps> = ({
                                 message={item}
                                 showDateOnTop={item.showDateOnTop}
                                 showArrow={item.showArrow}
-                                onMessageItemLongPress={onMessageItemLongPress}
+                                messageDateFormat={messageDateFormat}
                                 isSelected={selectedMessage?.id === item.id}
+                                onMessageItemLongPress={onMessageItemLongPress}
                             />
                         )
                     }
@@ -152,8 +144,9 @@ const Body: React.FC<IBodyProps> = ({
                             message={item}
                             showDateOnTop={item.showDateOnTop}
                             showArrow={item.showArrow}
-                            onMessageItemLongPress={onMessageItemLongPress}
+                            messageDateFormat={messageDateFormat}
                             isSelected={selectedMessage?.id === item.id}
+                            onMessageItemLongPress={onMessageItemLongPress}
                         />
                     )
                 }}

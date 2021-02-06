@@ -1,5 +1,6 @@
 /* eslint-disable @typescript-eslint/naming-convention */
 import * as React from 'react'
+import { ITheme } from '../interfaces'
 
 export const COMMON_COLORS = {
     BLACK: '#000',
@@ -27,29 +28,6 @@ export const LIGHT_COLORS = {
     YELLOW: '#ffd700',
     GREEN: '#61b15a',
     ...COMMON_COLORS,
-}
-
-export enum ETheme {
-    DARK = 'DARK',
-    LIGHT = 'LIGHT',
-}
-
-export interface ITheme {
-    DEFAULT_BG_COLOR: string
-    DEFAULT_COLOR: string
-    INPUT_BG_COLOR: string
-    INPUT_FG_COLOR: string
-    PRIMARY_BUTTON_BG_COLOR: string
-    PRIMARY_BUTTON_FG_COLOR: string
-    MESSAGE_BG_COLOR: string
-    USER_MESSAGE_BG_COLOR: string
-    MESSAGE_PENDING_ICON_COLOR: string
-    MESSAGE_DELIVERY_ICON_COLOR: string
-    MESSAGE_READ_ICON_COLOR: string
-    MESSAGE_SELECTED_BG_COLOR: string
-    MESSAGE_REPLY_BG_COLOR: string
-    CLOSE_ICON_FG_COLOR: string
-    CONTROLS_BG_COLOR: string
 }
 
 const LightTheme: ITheme = {
@@ -91,10 +69,6 @@ const DarkTheme: ITheme = {
 export const Theme = {
     LightTheme,
     DarkTheme,
-}
-
-export interface IThemedComponentProps {
-    theme?: ITheme
 }
 
 export const ThemeContext = React.createContext(Theme.DarkTheme)

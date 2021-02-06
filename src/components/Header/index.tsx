@@ -3,11 +3,9 @@ import { Text, View, Image, ImageSourcePropType } from 'react-native'
 
 import CloseButton from './CloseButton'
 
-import { IHeaderProps, ILsChatUser } from '../../interfaces'
 import styles from './styles'
 import { ThemeContext } from '../../theme'
-
-type IHeaderWithUserProps = IHeaderProps & { user: ILsChatUser }
+import { IHeaderWithUserProps } from '../../types'
 
 const Header: React.FC<IHeaderWithUserProps> = ({
     user,

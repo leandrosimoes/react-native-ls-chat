@@ -1,12 +1,9 @@
 import * as React from 'react'
 import { Animated, Easing, View } from 'react-native'
+import { ITypingIndicatorProps } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 
 import styles from './styles'
-
-interface ITypingIndicatorProps {
-    isTyping: boolean
-}
 
 const TypingIndicator: React.FC<ITypingIndicatorProps> = ({ isTyping }) => {
     const theme = React.useContext(ThemeContext)

@@ -1,14 +1,10 @@
 import * as React from 'react'
 import { TouchableWithoutFeedback, View } from 'react-native'
+import { IScrollToBottomButtonProps } from '../../../interfaces'
 import ImageIcon from '../../ImageIcon'
 import { ICONS } from '../../ImageIcon/ImageIcons'
 
 import styles from './styles'
-
-interface IScrollToBottomButtonProps {
-    isVisible: boolean
-    onPress: { (): void }
-}
 
 const ScrollToBottomButton: React.FC<IScrollToBottomButtonProps> = ({ isVisible, onPress }) => {
     if (!isVisible) return null

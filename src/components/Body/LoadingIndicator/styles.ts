@@ -1,5 +1,5 @@
 import { StyleSheet } from 'react-native'
-import { IThemedComponentProps } from '../../../theme'
+import { IThemedComponentProps } from '../../../interfaces'
 
 const styles = (props: IThemedComponentProps) =>
     StyleSheet.create({

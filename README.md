@@ -22,55 +22,9 @@ To see it working on your device, get a look at the [sample project](https://git
 
 ## Data Structure
 
-```typescript
-import { GestureResponderEvent, ImageSourcePropType } from 'react-native'
-
-interface IChatProps {
-    user: ILsChatUser
-    theme?: ETheme
-    headerProps?: IHeaderProps
-    messages?: ILsChatMessage[]
-    messageSelectionEnabled?: boolean
-    isTyping?: boolean
-    isFeching?: boolean
-    isLoading?: boolean
-    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number }): void }
-    onMessageTextInputChange: { (text: string): void }
-    onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
-    onSuccessSendMessage: { (message: ILsChatMessage): void }
-    onErrorSendMessage: { (message: ILsChatMessage, error: any): void }
-    onDeleteMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
-    onSuccessDeleteMessage: { (message: ILsChatMessage): void }
-    onErrorDeleteMessage: { (error: any): void }
-}
-
-interface ILsChatUser {
-    id: string
-    name: string
-    photo?: string
-}
-
-interface ILsChatMessage {
-    id: string
-    // Timestamp
-    time: number
-    text: string
-    user: ILsChatUser
-    replyingTo?: ILsChatMessage
-    isDelivered?: boolean
-    isRead?: boolean
-}
-
-interface IHeaderProps {
-    isVisible?: boolean
-    // if title empty/undefined the header title will be hidden
-    title?: string
-    // if imageSource empty/undefined the header image will be hidden
-    imageSource?: ImageSourcePropType
-    // if onCloseButtonPress empty/undefined the close button will be hidden
-    onCloseButtonPress?: { (event: GestureResponderEvent): void }
-}
-```
+* [Interfaces](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/src/interfaces)
+* [Types](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/src/types)
+* [Enums](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/src/enums)
 
 ## Usage
 

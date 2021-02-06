@@ -1,18 +1,14 @@
 import * as React from 'react'
 import { Animated, Image, Text, TouchableWithoutFeedback, View } from 'react-native'
-import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
+import { EStatusMessage } from '../../../enums'
+import { IMessageProps, IReplyProps } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
+import { formatDate, getTimeProperly } from '../../../utils'
 import ImageIcon from '../../ImageIcon'
 import { ICONS } from '../../ImageIcon/ImageIcons'
 import Arrow from './Arrow'
 
 import styles from './styles'
-
-enum EStatusMessage {
-    WAITING,
-    DELIVERED,
-    VIEWED,
-}
 
 const pulseAnimation = (animatedOpacity: Animated.Value) =>
     Animated.loop(
@@ -29,11 +25,6 @@ const pulseAnimation = (animatedOpacity: Animated.Value) =>
             }),
         ])
     )
-
-interface IReplyProps {
-    user: ILsChatUser
-    message: ILsChatMessage | undefined
-}
 
 type TReplyProps = React.PropsWithChildren<IReplyProps>
 
@@ -83,23 +74,13 @@ export const ReplyWrapper: React.FC<TReplyProps> = ({ children, message, user })
     )
 }
 
-interface IMessageProps {
-    user: ILsChatUser
-    message: ILsChatMessage
-    showDateOnTop: boolean
-    showArrow: boolean
-    isSelected: boolean
-    onMessageItemLongPress: {
-        (message: ILsChatMessage): void
-    }
-}
-
 export const MessageFromUser: React.FC<IMessageProps> = ({
     user,
     message,
     showDateOnTop,
     showArrow,
     isSelected,
+    messageDateFormat,
     onMessageItemLongPress,
 }) => {
     const animatedOpacity = React.useRef(new Animated.Value(1)).current
@@ -144,7 +125,7 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
                         style={themedStyles.dateSeparator}
                         accessibilityLabel='Message Date'
                         accessibilityRole='text'>
-                        {messageDate.toDateString()}
+                        {formatDate(messageDate, messageDateFormat)}
                     </Text>
                 )}
                 <ReplyWrapper message={message} user={user}>
@@ -154,9 +135,7 @@ export const MessageFromUser: React.FC<IMessageProps> = ({
                             <Arrow position='right' isSelected={isSelected} />
                         )}
                         <Text style={themedStyles.messageText}>{text}</Text>
-                        <Text style={themedStyles.messageDate}>
-                            {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
-                        </Text>
+                        <Text style={themedStyles.messageDate}>{getTimeProperly(messageDate)}</Text>
                         {status === EStatusMessage.WAITING && (
                             <ImageIcon
                                 style={themedStyles.messageStatusIcon}
@@ -190,6 +169,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
     showDateOnTop,
     showArrow,
     isSelected,
+    messageDateFormat,
     onMessageItemLongPress,
 }) => {
     const animatedOpacity = React.useRef(new Animated.Value(1)).current
@@ -234,7 +214,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                         style={themedStyles.dateSeparator}
                         accessibilityLabel='Message Date'
                         accessibilityRole='text'>
-                        {messageDate.toDateString()}
+                        {formatDate(messageDate, messageDateFormat)}
                     </Text>
                 )}
                 <ReplyWrapper message={message} user={user}>
@@ -269,7 +249,7 @@ export const MessageFromAnotherUser: React.FC<IMessageProps> = ({
                             style={themedStyles.messageDate}
                             accessibilityLabel='Message Hour'
                             accessibilityRole='text'>
-                            {`${messageDate.getHours()}:${messageDate.getMinutes()}`}
+                            {getTimeProperly(messageDate)}
                         </Text>
                         {status === EStatusMessage.WAITING && (
                             <ImageIcon

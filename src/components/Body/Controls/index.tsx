@@ -6,19 +6,11 @@ import {
     TouchableWithoutFeedback,
     View,
 } from 'react-native'
-import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
+import { IControlsProps } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 import ImageIcon from '../../ImageIcon'
 import { ICONS } from '../../ImageIcon/ImageIcons'
 import styles from './styles'
-
-interface IControlsProps {
-    message: ILsChatMessage | undefined
-    user: ILsChatUser
-    onPressControlBody: { (event: GestureResponderEvent): void }
-    onDeleteControlButtonPress: { (event: GestureResponderEvent): void }
-    onReplyControlButtonPress: { (event: GestureResponderEvent): void }
-}
 
 const Controls: React.FC<IControlsProps> = ({
     message,

@@ -1,5 +1,6 @@
 import { StyleSheet, Dimensions } from 'react-native'
-import { COMMON_COLORS, IThemedComponentProps } from '../../../theme'
+import { IThemedComponentProps } from '../../../interfaces'
+import { COMMON_COLORS } from '../../../theme'
 
 const { width } = Dimensions.get('screen')
 

@@ -1,14 +1,16 @@
 import * as React from 'react'
 import { Text, View } from 'react-native'
+import { IEmptyProps } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 
 import styles from './styles'
 
-interface IEmptyProps {
-    isLoading: boolean
-}
-
-const EmptyMessages: React.FC<IEmptyProps> = ({ isLoading }) => {
+const EmptyMessages: React.FC<IEmptyProps> = ({
+    isLoading,
+    title = 'Awesome!',
+    message = 'Be the first to leave a message!',
+    loadingMessage = 'Loading',
+}) => {
     const theme = React.useContext(ThemeContext)
 
     const themedStyles = styles({ theme })
@@ -17,11 +19,9 @@ const EmptyMessages: React.FC<IEmptyProps> = ({ isLoading }) => {
         <View
             style={themedStyles.container}
             accessibilityLabel='Empty Messages and Loading Messages Texts'>
-            {!isLoading && <Text style={themedStyles.noMessagesText}>Awesome!</Text>}
-            {!isLoading && (
-                <Text style={themedStyles.noMessagesText}>Be the first to leave a message!</Text>
-            )}
-            {isLoading && <Text style={themedStyles.noMessagesText}>Loading</Text>}
+            {!isLoading && <Text style={themedStyles.noMessagesText}>{title}</Text>}
+            {!isLoading && <Text style={themedStyles.noMessagesText}>{message}</Text>}
+            {isLoading && <Text style={themedStyles.noMessagesText}>{loadingMessage}</Text>}
         </View>
     )
 }
