@@ -1,12 +1,9 @@
 import * as React from 'react'
 import { Animated, Easing, View } from 'react-native'
+import { ILoadingIndicatorProps } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 
 import styles from './styles'
-
-interface ILoadingIndicatorProps {
-    isFeching: boolean
-}
 
 const LoadingIndicator: React.FC<ILoadingIndicatorProps> = ({ isFeching }) => {
     const theme = React.useContext(ThemeContext)

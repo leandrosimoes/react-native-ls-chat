@@ -1,13 +1,9 @@
 import * as React from 'react'
 import { View } from 'react-native'
+import { IArrowProps } from '../../../../interfaces'
 import { ThemeContext } from '../../../../theme'
 
 import styles from './styles'
-
-interface IArrowProps {
-    position: 'right' | 'left'
-    isSelected: boolean
-}
 
 const Arrow: React.FC<IArrowProps> = ({ position, isSelected }) => {
     const theme = React.useContext(ThemeContext)

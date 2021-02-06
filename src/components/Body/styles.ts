@@ -1,5 +1,5 @@
 import { Dimensions, StyleSheet } from 'react-native'
-import { IThemedComponentProps } from '../../theme'
+import { IThemedComponentProps } from '../../interfaces'
 
 const { width } = Dimensions.get('window')
 

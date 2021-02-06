@@ -6,31 +6,13 @@ import Header from './components/Header'
 import Body from './components/Body'
 import Footer from './components/Footer'
 
-import { IHeaderProps, ILsChatMessage, ILsChatUser } from './interfaces'
-import { ETheme, Theme, ThemeContext } from './theme'
+import { IChatProps, ILsChatMessage } from './interfaces'
+import { Theme, ThemeContext } from './theme'
 
 import styles from './styles'
+import { ETheme } from './enums'
 
-export interface IChatProps {
-    user: ILsChatUser
-    theme?: ETheme
-    headerProps?: IHeaderProps
-    messages?: ILsChatMessage[]
-    messageSelectionEnabled?: boolean
-    isTyping?: boolean
-    isFeching?: boolean
-    isLoading?: boolean
-    onReachEndOfMessagesList?: { (info: { distanceFromEnd: number }): void }
-    onMessageTextInputChange: { (text: string): void }
-    onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
-    onSuccessSendMessage: { (message: ILsChatMessage): void }
-    onErrorSendMessage: { (message: ILsChatMessage, error: any): void }
-    onDeleteMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
-    onSuccessDeleteMessage: { (message: ILsChatMessage): void }
-    onErrorDeleteMessage: { (error: any): void }
-}
-
-export { ETheme as LsChatTheme } from './theme'
+export { ETheme as LsChatTheme } from './enums'
 
 const ContentWrapper: React.FC<IChatProps> = ({
     user,
@@ -40,6 +22,8 @@ const ContentWrapper: React.FC<IChatProps> = ({
     isTyping = false,
     isFeching = false,
     isLoading = false,
+    messageDateFormat,
+    interfaceTexts,
     onReachEndOfMessagesList,
     onMessageTextInputChange,
     onSendMessage,
@@ -66,6 +50,8 @@ const ContentWrapper: React.FC<IChatProps> = ({
                 isTyping={isTyping}
                 isFeching={isFeching}
                 isLoading={isLoading}
+                messageDateFormat={messageDateFormat}
+                interfaceTexts={interfaceTexts}
                 onReachEndOfMessagesList={onReachEndOfMessagesList}
                 onReplyControlPress={onReplyControlPress}
                 onDeleteMessage={onDeleteMessage}
@@ -76,6 +62,7 @@ const ContentWrapper: React.FC<IChatProps> = ({
                 user={user}
                 isLoading={isLoading}
                 replyingMessage={replyingMessage}
+                interfaceTexts={interfaceTexts}
                 onMessageTextInputChange={onMessageTextInputChange}
                 onCancelReplyingMessage={() => setReplyingMessage(undefined)}
                 onSendMessage={onSendMessage}
@@ -98,6 +85,8 @@ const LsChat: React.FC<IChatProps> = ({
     isTyping = false,
     isFeching = false,
     isLoading = false,
+    messageDateFormat,
+    interfaceTexts,
     onReachEndOfMessagesList,
     onMessageTextInputChange,
     onSendMessage,
@@ -121,6 +110,8 @@ const LsChat: React.FC<IChatProps> = ({
                 isTyping={isTyping}
                 isFeching={isFeching}
                 isLoading={isLoading}
+                messageDateFormat={messageDateFormat}
+                interfaceTexts={interfaceTexts}
                 onReachEndOfMessagesList={onReachEndOfMessagesList}
                 onMessageTextInputChange={onMessageTextInputChange}
                 onSendMessage={onSendMessage}

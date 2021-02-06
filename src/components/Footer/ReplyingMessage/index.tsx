@@ -1,16 +1,9 @@
 import * as React from 'react'
 import { Animated, Easing, Image, Text, View } from 'react-native'
-import { ILsChatMessage, ILsChatUser } from '../../../interfaces'
+import { IReplyingMessageProps } from '../../../interfaces'
 import { ThemeContext } from '../../../theme'
 
 import styles from './styles'
-
-interface IReplyingMessageProps {
-    user: ILsChatUser
-    message?: ILsChatMessage
-    isVisible: boolean
-    onCancelReplyingMessage: { (): void }
-}
 
 const ReplyingMessage: React.FC<IReplyingMessageProps> = ({
     user,

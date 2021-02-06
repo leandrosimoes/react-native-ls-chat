@@ -6,7 +6,7 @@ import {
     TouchableWithoutFeedback,
     View,
 } from 'react-native'
-import { ILsChatMessage, ILsChatUser } from '../../interfaces'
+import { IInterfaceTexts, ILsChatMessage, ILsChatUser } from '../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../theme'
 import { guid } from '../../utils'
 import ImageIcon, { ICONS } from '../ImageIcon'
@@ -18,6 +18,7 @@ interface IFooterProps {
     user: ILsChatUser
     replyingMessage?: ILsChatMessage
     isLoading: boolean
+    interfaceTexts?: IInterfaceTexts
     onMessageTextInputChange?: { (text: string): void }
     onCancelReplyingMessage: { (): void }
     onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
@@ -29,6 +30,7 @@ const Footer: React.FC<IFooterProps> = ({
     user,
     replyingMessage,
     isLoading,
+    interfaceTexts,
     onMessageTextInputChange,
     onCancelReplyingMessage,
     onSendMessage,
@@ -103,7 +105,9 @@ const Footer: React.FC<IFooterProps> = ({
                 <TextInput
                     ref={inputRef}
                     style={themedStyle.input}
-                    placeholder='Type your message here!'
+                    placeholder={
+                        interfaceTexts?.messageInputPlaceholder || 'Type your message here!'
+                    }
                     placeholderTextColor={COMMON_COLORS.GREY}
                     multiline
                     value={message}
