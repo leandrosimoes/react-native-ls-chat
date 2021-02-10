@@ -6,25 +6,13 @@ import {
     TouchableWithoutFeedback,
     View,
 } from 'react-native'
-import { IInterfaceTexts, ILsChatMessage, ILsChatUser } from '../../interfaces'
+import { IFooterProps, ILsChatMessage } from '../../interfaces'
 import { COMMON_COLORS, ThemeContext } from '../../theme'
 import { guid } from '../../utils'
 import ImageIcon, { ICONS } from '../ImageIcon'
 import ReplyingMessage from './ReplyingMessage'
 
 import styles from './styles'
-
-interface IFooterProps {
-    user: ILsChatUser
-    replyingMessage?: ILsChatMessage
-    isLoading: boolean
-    interfaceTexts?: IInterfaceTexts
-    onMessageTextInputChange?: { (text: string): void }
-    onCancelReplyingMessage: { (): void }
-    onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
-    onSuccessSendMessage: { (message: ILsChatMessage): void }
-    onErrorSendMessage: { (message: ILsChatMessage, error: any): void }
-}
 
 const Footer: React.FC<IFooterProps> = ({
     user,
