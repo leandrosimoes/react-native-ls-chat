@@ -1,4 +1,4 @@
-import { name, random, internet, lorem, date } from 'faker'
+import { name, random, lorem, date } from 'faker'
 import { asyncForEach } from '../utils'
 
 let START_DATE = new Date(2021, 0, 1)

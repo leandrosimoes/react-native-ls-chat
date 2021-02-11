@@ -60,5 +60,5 @@ export const formatDate = (date: Date, format?: string) => {
 }
 
 export const getTimeProperly = (date: Date) => {
-    return formatDate(date, 'HH:dd')
+    return formatDate(date, 'HH:ss')
 }

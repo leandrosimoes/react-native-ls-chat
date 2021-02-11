@@ -22,6 +22,18 @@ export interface IChatProps {
     onErrorDeleteMessage: { (error: any): void }
 }
 
+export interface IFooterProps {
+    user: ILsChatUser
+    replyingMessage?: ILsChatMessage
+    isLoading: boolean
+    interfaceTexts?: IInterfaceTexts
+    onMessageTextInputChange?: { (text: string): void }
+    onCancelReplyingMessage: { (): void }
+    onSendMessage: { (message: ILsChatMessage): Promise<ILsChatMessage> }
+    onSuccessSendMessage: { (message: ILsChatMessage): void }
+    onErrorSendMessage: { (message: ILsChatMessage, error: any): void }
+}
+
 export interface IThemedComponentProps {
     theme?: ITheme
 }
