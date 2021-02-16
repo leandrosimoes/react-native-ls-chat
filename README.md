@@ -173,7 +173,7 @@ You can see all changes [here](https://github.com/leandrosimoes/react-native-ls-
 
 ## To do
 
-- [ ] Test in iOS
+- [x] Test in iOS
 - [ ] Add image file selection support
 - [ ] Add camera photo support
 - [ ] Add video file selection support
