@@ -17,6 +17,8 @@ jobs:
         working-directory: package
       - run: yarn lint
         working-directory: package
+      - run: yarn test
+        working-directory: package
       - run: yarn build
         working-directory: package
       - run: yarn publish
