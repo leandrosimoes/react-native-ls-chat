@@ -1,0 +1,6 @@
+node_modules/
+lib/
+babel.config.js
+jest.config.js
+**/*/*.test.ts
+**/*/*.test.tsx
