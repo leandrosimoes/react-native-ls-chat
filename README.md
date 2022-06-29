@@ -1,6 +1,6 @@
 # React Native Ls Chat
 
-React Native Ls Chat is a chat component ready to use. Just follow the documentation bellow and you'll be just fine.
+React Native Ls Chat is a chat component ready to use. Just follow the documentation below and you'll be just fine.
 
 
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/1414bdedd8a54214b02e8f06a3bdbb8c)](https://www.codacy.com/gh/leandrosimoes/react-native-ls-chat/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=leandrosimoes/react-native-ls-chat&amp;utm_campaign=Badge_Grade)
@@ -22,9 +22,9 @@ To see it working on your device, get a look at the [sample project](https://git
 
 ## Data Structure
 
-* [Interfaces](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/src/interfaces)
-* [Types](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/src/types)
-* [Enums](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/src/enums)
+* [Interfaces](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/package/src/interfaces)
+* [Types](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/package/src/types)
+* [Enums](https://github.com/leandrosimoes/react-native-ls-chat/tree/master/package/src/enums)
 
 ## Usage
 
